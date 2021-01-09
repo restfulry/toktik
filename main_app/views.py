@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def home(request):
-    return HttpResponse('Welcome to TokTik')
+    return render(request, 'index.html')
 
 
 def signup(request):
