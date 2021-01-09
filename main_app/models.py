@@ -8,7 +8,3 @@ class Member(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     points = models.IntegerField(editable=False)
-
-
-class Question(models.Model):
-    title = models.
