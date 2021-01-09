@@ -8,3 +8,10 @@ class Member(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     points = models.IntegerField(editable=False)
+
+
+class Question(models.Model):
+    question = models.CharField(max_length=500)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
