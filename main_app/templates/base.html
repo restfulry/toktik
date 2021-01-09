@@ -62,9 +62,8 @@
               </nav>
           </aside>
           <main class="col bg-faded py-3 flex-grow-1">
+          {% block content %} {% endblock %}
           </main>
       </div>
-
-    <main>{% block content %} {% endblock %}</main>
   </body>
 </html>
