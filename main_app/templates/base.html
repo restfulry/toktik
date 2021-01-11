@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +12,7 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -19,51 +21,288 @@
     ></script>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row min-vh-100 flex-column flex-md-row">
-          <aside class="col-12 col-md-2 p-0 flex-shrink-1">
-              <nav class="navbar navbar-expand fixed-top navbar-light flex-md-column flex-row align-items-start py-2">
-                  <div class="collapse navbar-collapse ">
-                      <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                          <li class="nav-item">
-                              <a class="nav-link pl-0 text-nowrap" href="#"> <span class="font-weight-bold">TokTik</span></a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                              </svg><span class="d-none d-md-inline"> Home</span></a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-record-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                              </svg><span class="d-none d-md-inline"> Answer</span></a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
-                                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                              </svg><span class="d-none d-md-inline"> Ask</span></a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-                              </svg><span class="d-none d-md-inline"> Notifications</span></a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                            </svg><span class="d-none d-md-inline"> Profile</span></a>
-                        </li>
-                          
-                      </ul>
-                  </div>
-              </nav>
-          </aside>
-          <main class="col bg-faded py-3 flex-grow-1">
+        <aside class="col-12 col-md-3 p-0 flex-shrink-1 sticky-top">
+          <nav
+            class="navbar sticky-top navbar-expand navbar-light flex-md-column flex-row align-items-start py-2"
+          >
+            <div class="collapse navbar-collapse sticky">
+              <ul
+                class="flex-md-column flex-row navbar-nav w-100 justify-content-between"
+              >
+                <li
+                  class="nav-item d-none d-sm-block"
+                  style="margin-bottom: 40px"
+                >
+                  <a class="nav-link pl-0 text-nowrap" href="#">
+                    <svg
+                      width="125"
+                      height="32"
+                      viewBox="0 0 125 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.23 10.33V9.10998C17.6535 9.04287 18.0813 9.00611 18.51 8.99996C22.6608 8.9912 26.3357 11.681 27.5821 15.6402C28.8285 19.5995 27.3573 23.9094 23.95 26.28C26.5023 23.5485 27.211 19.5721 25.7595 16.127C24.308 12.6819 20.9675 10.4115 17.23 10.33Z"
+                        fill="#25F4EE"
+                      />
+                      <path
+                        d="M17 26.15C14.6792 26.1469 12.7716 24.3185 12.67 22V1.31H8.89C8.96716 0.877682 9.00398 0.439131 9 0H14.17V20.67C14.256 23.0003 16.1681 24.8462 18.5 24.85C19.1969 24.8441 19.8823 24.6727 20.5 24.35C19.6881 25.4749 18.3873 26.1439 17 26.15Z"
+                        fill="#25F4EE"
+                      />
+                      <path
+                        d="M1.83 8.33V7.18C3.22113 7.18048 4.58139 6.76996 5.74001 6C4.72433 7.18072 3.35181 7.99861 1.83 8.33Z"
+                        fill="#25F4EE"
+                      />
+                      <path
+                        d="M5.74 5.99999C6.8813 4.70032 7.51047 3.02964 7.51 1.29999H8.89C8.52978 3.23267 7.39073 4.93222 5.74 5.99999Z"
+                        fill="#FE2C55"
+                      />
+                      <path
+                        d="M18.51 16.17C20.5016 16.1802 22.2306 17.5446 22.7036 19.4792C23.1766 21.4138 22.2722 23.422 20.51 24.35C21.4648 23.0318 21.5997 21.2894 20.8591 19.84C20.1186 18.3905 18.6277 17.4788 17 17.48C16.566 17.4854 16.135 17.5528 15.72 17.68V12.42C16.1438 12.3565 16.5715 12.3231 17 12.32H17.23V16.32C17.6471 16.2082 18.0783 16.1576 18.51 16.17Z"
+                        fill="#FE2C55"
+                      />
+                      <path
+                        d="M1.83 8.32999V12.33C4.4053 12.325 6.91374 11.5098 9 9.99999V20.51C9.01103 25.7544 13.2656 30 18.51 30C20.4576 30.0034 22.3584 29.4025 23.95 28.28C21.2938 31.1368 17.1599 32.0772 13.5293 30.6505C9.89865 29.2239 7.51083 25.7209 7.51 21.82V11.34C5.41674 12.84 2.9052 13.6445 0.330004 13.64V8.48999C0.834175 8.48838 1.33684 8.43476 1.83 8.32999Z"
+                        fill="#FE2C55"
+                      />
+                      <path
+                        d="M9 20.51V9.99999C6.90736 11.5012 4.3954 12.3058 1.82 12.3V8.29999C3.34151 7.9787 4.71733 7.17146 5.74 5.99999C7.39073 4.93222 8.52979 3.23267 8.89 1.29999H12.67V22C12.7456 23.8468 13.9826 25.443 15.752 25.9772C17.5214 26.5114 19.4351 25.8664 20.52 24.37C22.2822 23.442 23.1866 21.4338 22.7136 19.4992C22.2406 17.5646 20.5115 16.2002 18.52 16.19C18.0859 16.1939 17.6546 16.2612 17.24 16.39V12.39C20.9984 12.4537 24.3642 14.732 25.8198 18.1977C27.2754 21.6634 26.5458 25.6617 23.96 28.39C22.3527 29.4755 20.4492 30.0378 18.51 30C13.2656 30 9.01103 25.7544 9 20.51Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M83 9.06H99.12L97.64 13.72H93.46V30.72H88.23V13.72H83.01L83 9.06Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M100.1 15.95H105.27V30.72H100.14L100.1 15.95Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M107.32 9H112.48V19.09L117.6 14.09H123.76L117.29 20.37L124.54 30.72H118.85L114.01 23.53L112.48 25.01V30.72H107.32V9Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M102.69 14.26C104.126 14.26 105.29 13.0959 105.29 11.66C105.29 10.2241 104.126 9.06 102.69 9.06C101.254 9.06 100.09 10.2241 100.09 11.66C100.09 13.0959 101.254 14.26 102.69 14.26Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M29.52 9.06H46.01L44.53 13.72H39.99V30.72H34.77V13.72H29.53L29.52 9.06Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M66.01 9H71.23V19.09L76.34 14.09H82.5L76.03 20.37L83.23 30.72H77.54L72.71 23.53L71.23 25.01V30.72H66.06L66.01 9Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M45.35 21.88C45.3516 17.2666 48.9006 13.4301 53.5 13.07C53.27 13.07 52.96 13.07 52.73 13.07C48.0557 13.3427 44.4048 17.2128 44.4048 21.895C44.4048 26.5773 48.0557 30.4474 52.73 30.72C52.96 30.72 53.27 30.72 53.5 30.72C48.8891 30.359 45.3359 26.505 45.35 21.88Z"
+                        fill="#25F4EE"
+                      />
+                      <path
+                        d="M55.51 13.04C55.27 13.04 54.96 13.04 54.73 13.04C59.3145 13.4187 62.8423 17.2499 62.8423 21.85C62.8423 26.4501 59.3145 30.2814 54.73 30.66C54.96 30.66 55.27 30.66 55.51 30.66C60.3922 30.66 64.35 26.7022 64.35 21.82C64.35 16.9378 60.3922 12.98 55.51 12.98V13.04Z"
+                        fill="#FE2C55"
+                      />
+                      <path
+                        d="M54.11 26.18C51.7352 26.18 49.81 24.2548 49.81 21.88C49.81 19.5052 51.7352 17.58 54.11 17.58C56.4848 17.58 58.41 19.5052 58.41 21.88C58.4045 24.2526 56.4825 26.1745 54.11 26.18ZM54.11 13.04C49.2278 13.04 45.27 16.9978 45.27 21.88C45.27 26.7622 49.2278 30.72 54.11 30.72C58.9922 30.72 62.95 26.7622 62.95 21.88C62.95 19.5355 62.0187 17.287 60.3608 15.6292C58.703 13.9714 56.4545 13.04 54.11 13.04Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </a>
+                </li>
+
+                <li class="nav-item" style="margin-bottom: 10px">
+                  <a class="nav-link pl-0" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-house"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
+                      />
+                    </svg>
+                    <span class="d-none d-md-inline"> Home</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link pl-0" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-chat-left-text"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                      />
+                      <path
+                        d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
+                      />
+                    </svg>
+                    <span class="d-none d-md-inline"> Ask</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link pl-0" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-record-circle"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                      />
+                      <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    </svg>
+                    <span class="d-none d-md-inline"> Answer</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link pl-0" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-bell"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
+                      />
+                    </svg>
+                    <span class="d-none d-md-inline"> Notifications</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link pl-0" href="#">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-person"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
+                      />
+                    </svg>
+                    <span class="d-none d-md-inline"> Profile</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </aside>
+        <main class="col bg-faded py-3 flex-grow-1">
           {% block content %} {% endblock %}
-          </main>
+          <h2>Example</h2>
+          <p>
+            This is a Bootstrap 4 example layout that includes a Sidebar menu.
+            On larger screen widths, the Sidebar is on the left side and
+            consumes the entire page height. It's vertically positioned down the
+            screen. On smaller screen widths (like mobile phones and tablets),
+            the Sidebar moves to the top of the page, and becomes horizontally
+            positioned across the page like a Navbar. Only icons are shown on
+            mobile to limit use of screen real estate. This is a Bootstrap 4
+            example layout that includes a Sidebar menu. On larger screen
+            widths, the Sidebar is on the left side and consumes the entire page
+            height. It's vertically positioned down the screen. On smaller
+            screen widths (like mobile phones and tablets), the Sidebar moves to
+            the top of the page, and becomes horizontally positioned across the
+            page like a Navbar. Only icons are shown on mobile to limit use of
+            screen real estate. This is a Bootstrap 4 example layout that
+            includes a Sidebar menu. On larger screen widths, the Sidebar is on
+            the left side and consumes the entire page height. It's vertically
+            positioned down the screen. On smaller screen widths (like mobile
+            phones and tablets), the Sidebar moves to the top of the page, and
+            becomes horizontally positioned across the page like a Navbar. Only
+            icons are shown on mobile to limit use of screen real estate. This
+            is a Bootstrap 4 example layout that includes a Sidebar menu. On
+            larger screen widths, the Sidebar is on the left side and consumes
+            the entire page height. It's vertically positioned down the screen.
+            On smaller screen widths (like mobile phones and tablets), the
+            Sidebar moves to the top of the page, and becomes horizontally
+            positioned across the page like a Navbar. Only icons are shown on
+            mobile to limit use of screen real estate. This is a Bootstrap 4
+            example layout that includes a Sidebar menu. On larger screen
+            widths, the Sidebar is on the left side and consumes the entire page
+            height. It's vertically positioned down the screen. On smaller
+            screen widths (like mobile phones and tablets), the Sidebar moves to
+            the top of the page, and becomes horizontally positioned across the
+            page like a Navbar. Only icons are shown on mobile to limit use of
+            screen real estate. This is a Bootstrap 4 example layout that
+            includes a Sidebar menu. On larger screen widths, the Sidebar is on
+            the left side and consumes the entire page height. It's vertically
+            positioned down the screen. On smaller screen widths (like mobile
+            phones and tablets), the Sidebar moves to the top of the page, and
+            becomes horizontally positioned across the page like a Navbar. Only
+            icons are shown on mobile to limit use of screen real estate. This
+            is a Bootstrap 4 example layout that includes a Sidebar menu. On
+            larger screen widths, the Sidebar is on the left side and consumes
+            the entire page height. It's vertically positioned down the screen.
+            On smaller screen widths (like mobile phones and tablets), the
+            Sidebar moves to the top of the page, and becomes horizontally
+            positioned across the page like a Navbar. Only icons are shown on
+            mobile to limit use of screen real estate.
+          </p>
+          <p>
+            This Sidebar works using only Bootstrap CSS classes and doesn't
+            require JavaScript. It utilizes the responsive Navbar classes to
+            auto-magically switch the Sidebar orientation. This Sidebar works
+            using only Bootstrap CSS classes and doesn't require JavaScript. It
+            utilizes the responsive Navbar classes to auto-magically switch the
+            Sidebar orientation. This Sidebar works using only Bootstrap CSS
+            classes and doesn't require JavaScript. It utilizes the responsive
+            Navbar classes to auto-magically switch the Sidebar orientation.
+            This Sidebar works using only Bootstrap CSS classes and doesn't
+            require JavaScript. It utilizes the responsive Navbar classes to
+            auto-magically switch the Sidebar orientation. This Sidebar works
+            using only Bootstrap CSS classes and doesn't require JavaScript. It
+            utilizes the responsive Navbar classes to auto-magically switch the
+            Sidebar orientation. This Sidebar works using only Bootstrap CSS
+            classes and doesn't require JavaScript. It utilizes the responsive
+            Navbar classes to auto-magically switch the Sidebar orientation.
+            This Sidebar works using only Bootstrap CSS classes and doesn't
+            require JavaScript. It utilizes the responsive Navbar classes to
+            auto-magically switch the Sidebar orientation. This Sidebar works
+            using only Bootstrap CSS classes and doesn't require JavaScript. It
+            utilizes the responsive Navbar classes to auto-magically switch the
+            Sidebar orientation. This Sidebar works using only Bootstrap CSS
+            classes and doesn't require JavaScript. It utilizes the responsive
+            Navbar classes to auto-magically switch the Sidebar orientation.
+            This Sidebar works using only Bootstrap CSS classes and doesn't
+            require JavaScript. It utilizes the responsive Navbar classes to
+            auto-magically switch the Sidebar orientation. This Sidebar works
+            using only Bootstrap CSS classes and doesn't require JavaScript. It
+            utilizes the responsive Navbar classes to auto-magically switch the
+            Sidebar orientation. This Sidebar works using only Bootstrap CSS
+            classes and doesn't require JavaScript. It utilizes the responsive
+            Navbar classes to auto-magically switch the Sidebar orientation.
+            This Sidebar works using only Bootstrap CSS classes and doesn't
+            require JavaScript. It utilizes the responsive Navbar classes to
+            auto-magically switch the Sidebar orientation. This Sidebar works
+            using only Bootstrap CSS classes and doesn't require JavaScript. It
+            utilizes the responsive Navbar classes to auto-magically switch the
+            Sidebar orientation.
+          </p>
+        </main>
       </div>
+    </div>
   </body>
 </html>
