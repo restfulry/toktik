@@ -32,3 +32,13 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question
+
+
+class Answer(models.Model):
+    # will need to implement video here
+    answer = models.CharField(max_length=1)
+
+    is_anon = models.BooleanField(default=False)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
