@@ -16,7 +16,7 @@ class Member(models.Model):
     email = models.EmailField(max_length=150)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    points = models.IntegerField(editable=False)
+    points = models.IntegerField(editable=False, default='100')
 
     def __str__(self):
         return self.user.username
