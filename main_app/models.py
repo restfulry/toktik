@@ -22,12 +22,11 @@ class Member(models.Model):
     def __str__(self):
         return self.user.username
 
-
-@receiver(post_save, sender=User)
-def update_member_signal(sender, instance, created, **kwargs):
-    if created:
-        Member.objects.create(user=instance)
-    instance.member.save()
+    @receiver(post_save, sender=User)
+    def update_member_signal(sender, instance, created, **kwargs):
+        if created:
+            Member.objects.create(user=instance)
+        instance.member.save()
 
 
 class Question(models.Model):
@@ -37,7 +36,7 @@ class Question(models.Model):
         choices=CATEGORIES,
     )
     is_anon = models.BooleanField(default=False)
-    points = models.IntegerField(editable=False)
+    points = models.IntegerField(editable=False, default='1000')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -47,7 +46,7 @@ class Question(models.Model):
         return self.question
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs={"question_id": self.id})
+        return reverse("question_detail", kwargs={"question_id": self.id})
 
 
 class Answer(models.Model):

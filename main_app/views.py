@@ -9,6 +9,14 @@ class QuestionCreate(CreateView):
     model = Question
     fields = ['question', 'category']
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+def question_detail(request, question_id):
+    return render(request, 'question_detail.html')
+
 
 def home(request):
     return render(request, 'index.html')
