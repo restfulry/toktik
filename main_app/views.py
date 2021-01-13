@@ -1,6 +1,21 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.views.generic.edit import CreateView
 from .forms import SignUpForm
+from .models import Question
+
+
+class QuestionCreate(CreateView):
+    model = Question
+    fields = ['question', 'category']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+def question_detail(request, question_id):
+    return render(request, 'question_detail.html')
 
 
 def home(request):
