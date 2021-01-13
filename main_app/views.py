@@ -5,6 +5,11 @@ from .forms import SignUpForm
 from .models import Question
 
 
+class QuestionCreate(CreateView):
+    model = Question
+    fields = ['question', 'category']
+
+
 def home(request):
     return render(request, 'index.html')
 
