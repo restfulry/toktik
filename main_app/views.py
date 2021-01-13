@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
+from .models import Member
 
 
 def home(request):
@@ -28,3 +29,10 @@ def signup(request):
     form = SignUpForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+def profile_detail(request, member_id):
+    member = Member.objects.get(id=member_id)
+    return render(request, 'profile/detail.html', {
+        'member': member
+    })

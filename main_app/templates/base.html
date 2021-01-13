@@ -171,6 +171,7 @@
                     <span class="d-none d-md-inline"> Answer</span></a
                   >
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item" style="margin-bottom: 10px">
                   <a class="nav-link pl-0" href="#">
                     <svg
@@ -189,7 +190,7 @@
                   >
                 </li>
                 <li class="nav-item" style="margin-bottom: 10px">
-                  <a class="nav-link pl-0" href="#">
+                  <a class="nav-link pl-0" href="{% url 'profile' user.id %}">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -205,7 +206,6 @@
                     <span class="d-none d-md-inline"> Profile</span></a
                   >
                 </li>
-                {% if user.is_authenticated %}
                 <li class="nav-item" style="margin-bottom: 10px">
                   <a class="nav-link pl-0" href="{% url 'logout' %}">
                     <span class="d-none d-md-inline"> Logout</span></a
