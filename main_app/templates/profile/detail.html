@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="text-center">Profile</h1>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card p-3">
+    <div class="d-flex align-items-center">
+      <div class="image">
+        <img
+          src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
+          class="rounded"
+          width="155"
+        />
+      </div>
+      <div class="ml-3 w-100">
+        <h4 class="mb-0 mt-0">
+          {{ member.first_name }} {{ member.last_name }}
+        </h4>
+        <span>Username: {{ member.user }}</span>
+        <br />
+        <span>Email: {{ member.email }}</span>
+        <div
+          class="p-2 mt-2 bg-primary d-flex justify-content-center rounded text-white stats"
+        >
+          <div class="row text-center">
+            <span class="articles">Points {{ member.points }}</span>
+          </div>
+        </div>
+        <div class="button mt-2 d-flex flex-row align-items-center">
+          <button class="btn btn-sm btn-outline-primary w-100">
+            Edit Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
