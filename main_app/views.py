@@ -19,7 +19,8 @@ def question_detail(request, question_id):
 
 
 def home(request):
-    return render(request, 'index.html')
+    text = request.GET.get('text', '')
+    return render(request, 'index.html', dict(text=text))
 
 
 def signup(request):

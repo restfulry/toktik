@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+MICAWBER_TEMPLATE_EXTENSIONS = [
+    ('oembed_no_urlize', {'urlize_all': False}),
+]
+
+MICAWBER_PROVIDERS = 'toktik.micawber_providers.oembed_providers'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -38,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'micawber.contrib.mcdjango',
+
 ]
 
 MIDDLEWARE = [
