@@ -205,6 +205,24 @@
                     <span class="d-none d-md-inline"> Profile</span></a
                   >
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item" style="margin-bottom: 10px">
+                  <a class="nav-link pl-0" href="{% url 'logout' %}">
+                    <span class="d-none d-md-inline"> Logout</span></a
+                  >
+                </li>
+                {% else %}
+                <li class="nav-item" style="margin-bottom: 10px">
+                  <a class="nav-link pl-0" href="{% url 'signup' %}">
+                    <span class="d-none d-md-inline"> Sign Up</span></a
+                  >
+                </li>
+                <li class="nav-item" style="margin-bottom: 10px">
+                  <a class="nav-link pl-0" href="{% url 'login' %}">
+                    <span class="d-none d-md-inline">Log In</span></a
+                  >
+                </li>
+                {% endif %}
               </ul>
             </div>
           </nav>
