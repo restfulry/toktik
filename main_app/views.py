@@ -26,6 +26,11 @@ class QuestionDelete(DeleteView):
     success_url = '/'
 
 
+def questions_index(request):
+    questions = Question.objects.all()
+    return render(request, 'questions/index.html', {'questions': questions})
+
+
 def question_detail(request, question_id):
     question = Question.objects.get(id=question_id)
     answer_form = AnswerForm()
