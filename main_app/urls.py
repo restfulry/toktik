@@ -9,4 +9,6 @@ urlpatterns = [
          name='questions_create'),
     path('questions/<int:question_id>/',
          views.question_detail, name='question_detail'),
+    path('questions/<int:question_id>/add_answer/',
+         views.add_answer, name='add_answer'),
 ]
