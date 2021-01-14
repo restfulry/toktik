@@ -26,6 +26,11 @@ class QuestionDelete(DeleteView):
     success_url = '/'
 
 
+def questions_index(request):
+    questions = Question.objects.all()
+    return render(request, 'questions/index.html', {'questions': questions})
+
+
 def question_detail(request, question_id):
     question = Question.objects.get(id=question_id)
     answer_form = AnswerForm()
@@ -76,7 +81,7 @@ def add_answer(request, question_id):
         new_answer.save()
     return redirect('question_detail', question_id=question_id)
 
+
 class ProfileUpdate(UpdateView):
     model = Member
     fields = ['email', 'first_name', 'last_name']
-

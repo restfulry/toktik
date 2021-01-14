@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Answer a Question</h1>
+
+{% for question in questions %}
+<div class="card">
+  <a href="{% url 'question_detail' question.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ question.question }}</span>
+      <p>Category: {{ question.category }}</p>
+      <p>Asked by: {{ question.user.username }}</p>
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
