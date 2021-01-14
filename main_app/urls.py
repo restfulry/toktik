@@ -9,6 +9,7 @@ urlpatterns = [
          views.ProfileUpdate.as_view(), name='profile_update'),
     path('questions/create/', views.QuestionCreate.as_view(),
          name='questions_create'),
+    path('questions/', views.questions_index, name='questions_index'),
     path('questions/<int:question_id>/',
          views.question_detail, name='question_detail'),
     path('questions/<int:question_id>/add_answer/',
