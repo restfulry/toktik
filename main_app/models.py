@@ -28,6 +28,9 @@ class Member(models.Model):
             Member.objects.create(user=instance)
         instance.member.save()
 
+    def get_absolute_url(self):
+        return reverse('profile_detail', kwargs={'member_id': self.id})
+
 
 class Question(models.Model):
     question = models.CharField(max_length=500)

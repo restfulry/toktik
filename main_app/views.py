@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .forms import SignUpForm
 from .models import Question, Member
 
@@ -52,3 +52,8 @@ def profile_detail(request, member_id):
     return render(request, 'profile/detail.html', {
         'member': member
     })
+
+
+class ProfileUpdate(UpdateView):
+    model = Member
+    fields = ['email', 'first_name', 'last_name']
