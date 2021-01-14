@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Question Details</h1>
+<h2>{{question.question}}</h2>
+<h3>Asked by {{question.user.first_name}}</h3>
+<h3>Category: {{question.category}}</h3>
+<h3>Points: {{question.points}}</h3>
+
+
+{% endblock %}
