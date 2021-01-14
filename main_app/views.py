@@ -62,3 +62,8 @@ def profile_detail(request, member_id):
     return render(request, 'profile/detail.html', {
         'member': member
     })
+
+
+class ProfileUpdate(UpdateView):
+    model = Member
+    fields = ['email', 'first_name', 'last_name']

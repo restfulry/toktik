@@ -190,7 +190,10 @@
                   >
                 </li>
                 <li class="nav-item" style="margin-bottom: 10px">
-                  <a class="nav-link pl-0" href="{% url 'profile' user.id %}">
+                  <a
+                    class="nav-link pl-0"
+                    href="{% url 'profile_detail' user.id %}"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
