@@ -15,7 +15,8 @@ class QuestionCreate(CreateView):
 
 
 def question_detail(request, question_id):
-    return render(request, 'question_detail.html')
+    question = Question.objects.get(id=question_id)
+    return render(request, 'main_app/question_detail.html', {'question': question})
 
 
 def home(request):
