@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SignUpForm
 from .models import Question, Member
 
@@ -12,6 +12,16 @@ class QuestionCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class QuestionUpdate(UpdateView):
+    model = Question
+    fields = ['question', 'category']
+
+
+class QuestionDelete(DeleteView):
+    model = Question
+    success_url = '/'
 
 
 def question_detail(request, question_id):
