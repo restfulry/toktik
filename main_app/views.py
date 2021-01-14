@@ -76,7 +76,7 @@ def add_answer(request, question_id):
         new_answer.save()
     return redirect('question_detail', question_id=question_id)
 
+
 class ProfileUpdate(UpdateView):
     model = Member
     fields = ['email', 'first_name', 'last_name']
-

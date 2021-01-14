@@ -2,14 +2,26 @@
 
   <body>
 
-    <form action="" method="post">
+    
+    <form action="{% url 'question_create' %}" method="post">
       {% csrf_token %}
       <table>
-        {{ form.as_table }}
-      </table>
-      <input type="submit" value="Ask Question!" class="btn" />
+        <tbody><tr><th><label for="id_question">Question:</label></th><td><input type="text" name="question" maxlength="500" required="" id="id_question"></td></tr>
+    <tr><th><label for="id_category">Category:</label></th><td><select name="category" required="" id="id_category">
+      <option value="" selected="">---------</option>
+      <option value="SCI">SCIENCE</option>
+    
+      <option value="MAT">MATHEMATICS</option>
+    
+      <option value="GAR">GARDEN</option>
+    
+      <option value="OTH">OTHER</option>
+    
+    </select></td></tr>
+      </tbody></table>
+      <input type="submit" value="Ask Question!" class="btn">
     </form>
-
+  
 
     <div class="page">
       <h2>Text renderer</h2>
