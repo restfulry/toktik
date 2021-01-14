@@ -54,7 +54,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     # will need to implement video here
-    answer = models.CharField(max_length=1)
+    answer = models.URLField(max_length=400)
 
     is_anon = models.BooleanField(default=False)
 

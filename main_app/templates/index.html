@@ -1,14 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Example</title>
-  </head>
   <body>
-    <div class="page">
-      <h1>Micawber Example</h1>
 
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <input type="submit" value="Ask Question!" class="btn" />
+    </form>
+
+
+    <div class="page">
       <h2>Text renderer</h2>
       <form method="get">
         <p>
