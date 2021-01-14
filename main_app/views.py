@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SignUpForm
 from .models import Question, Member
 
+from .forms import AnswerForm
+
 
 class QuestionCreate(CreateView):
     model = Question
@@ -26,7 +28,8 @@ class QuestionDelete(DeleteView):
 
 def question_detail(request, question_id):
     question = Question.objects.get(id=question_id)
-    return render(request, 'main_app/question_detail.html', {'question': question})
+    answer_form = AnswerForm()
+    return render(request, 'main_app/question_detail.html', {'question': question, 'answer_form': answer_form})
 
 
 def home(request):
@@ -64,6 +67,16 @@ def profile_detail(request, member_id):
     })
 
 
+def add_answer(request, question_id):
+    form = AnswerForm(request.POST)
+    if form.is_valid():
+        new_answer = form.save(commit=False)
+        new_answer.question_id = question_id
+        new_answer.user_id = request.user.id
+        new_answer.save()
+    return redirect('question_detail', question_id=question_id)
+
 class ProfileUpdate(UpdateView):
     model = Member
     fields = ['email', 'first_name', 'last_name']
+

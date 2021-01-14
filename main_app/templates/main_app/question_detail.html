@@ -5,6 +5,15 @@
 <h3>Category: {{question.category}}</h3>
 <h3>Points: {{question.points}}</h3>
 
+<div>
+  {% for answer in question.answer_set.all %} {{answer.answer}} {% endfor %}
+</div>
+
+<form action="{% url 'add_answer' question.id %}" method="post">
+  {% csrf_token %} {{ answer_form.as_p }}
+  <input type="submit" class="btn" value="Submit" />
+</form>
+
 <a href="{% url 'question_update' question.id %} ">Edit Question</a>
 <a href="{% url 'question_delete' question.id %}">Delete Question</a>
 {% endblock %}
