@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SignUpForm
-from .models import Question, Member
+from .models import Question, Member, Answer
 
 from .forms import AnswerForm
 
@@ -39,7 +39,9 @@ def question_detail(request, question_id):
 
 def home(request):
     text = request.GET.get('text', '')
-    return render(request, 'index.html', dict(text=text))
+    questions = Question.objects.all()
+    answers = Answer.objects.all()
+    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers})
 
 
 def signup(request):
