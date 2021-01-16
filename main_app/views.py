@@ -38,6 +38,12 @@ def question_detail(request, question_id):
     return render(request, 'main_app/question_detail.html', {'question': question, 'answer_form': answer_form, 'question_form': QuestionForm})
 
 
+def questions_sort(request, category):
+    print(f"{category}")
+    questions = Question.objects.filter(category=category)
+    return render(request, 'questions/index.html', {'questions': questions})
+
+
 def home(request):
     # text = request.GET.get('text', '')
     questions = Question.objects.all()
