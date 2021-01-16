@@ -87,9 +87,9 @@ def add_answer(request, question_id):
 
 def like_answer(request, answer_id):
     answer = Answer.objects.get(id=answer_id)
-    answer.likes.user_id = request.user.id
+    answer.likes.User = request.user
     answer.save()
-    return redirect(request, 'index.html')
+    return redirect('home')
 
 
 class ProfileUpdate(UpdateView):

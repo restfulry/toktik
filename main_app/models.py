@@ -59,9 +59,14 @@ class Answer(models.Model):
 
     is_anon = models.BooleanField(default=False)
     points = models.IntegerField(default='1000')
-    likes = models.ManyToManyField(User, related_name='likes')
+    likes = models.OneToManyField(User, related_name='likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.answer
+
+
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
