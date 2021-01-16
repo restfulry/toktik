@@ -11,37 +11,22 @@
       </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            {% include 'main_app/question_form.html' %}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Add Question</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% load micawber_tags %} {% if answers %}
+
+    {% for answer in answers %}
 
     <div class="card mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <div class="card-body">
         <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-        <span class="ms-2"> Full Name </span> 
-        <p class="qtext mt-2">Show me what you got?</p>
-        {% load micawber_tags %} {% if text %}
+        <span class="ms-2"> {{answer.user.first_name}} {{answer.user.last_name}} </span> 
+        <p class="qtext mt-2">{{answer.question}}</p>
+
         <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                {{ text|oembed:"300x800" }}
-              </div>
-              <div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              {{ answer.answer|oembed:"300x800" }}
+            </div>
+            <div>
                 <div class="ms-5 heart"> 
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16">
                     <path d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
@@ -51,87 +36,61 @@
                   100
                 </div>
               </div>
-
-            </div>
+          </div>
         </div>
-        
-        {% endif %}
+
       </div>
     </div>
-  
-
-        <div>
-          <form action="{% url 'question_create' %}" method="post">
-            {% csrf_token %}
-            <table>
-              <tbody><tr><th><label for="id_question">Question:</label></th><td><input type="text" name="question" maxlength="500" required="" id="id_question"></td></tr>
-          <tr><th><label for="id_category">Category:</label></th><td><select name="category" required="" id="id_category">
-            <option value="" selected="">---------</option>
-            <option value="SCI">SCIENCE</option>
-          
-            <option value="MAT">MATHEMATICS</option>
-          
-            <option value="GAR">GARDEN</option>
-          
-            <option value="OTH">OTHER</option>
-          
-          </select></td></tr>
-            </tbody></table>
-            <input type="submit" value="Ask Question!" class="btn">
-          </form>
-        </div>
-
-      <div>
-        {{answers}}
-      </div>
+    {%endfor%}
+    {% endif %}
 
 
 
-      <div class="page">
-        <h2>Text renderer</h2>
-        <form method="get">
-          <p>
-            <label>Enter some text</label>
-          </p>
-          <p>
-            <textarea cols="50" rows="5" name="text">{{ text }}</textarea>
-            <small style="display: block"
-              >Try entering some urls to youtube videos</small
-            >
-          </p>
-          <p>
-            <button type="submit">Render</button>
-          </p>
-        </form>
+    <!-- <div class="page">
+      <h2>Text renderer</h2>
+      <form method="get">
+        <p>
+          <label>Enter some text</label>
+        </p>
+        <p>
+          <textarea cols="50" rows="5" name="text">{{ text }}</textarea>
+          <small style="display: block"
+            >Try entering some urls to youtube videos</small
+          >
+        </p>
+        <p>
+          <button type="submit">Render</button>
+        </p>
+      </form>
 
-        {% load micawber_tags %} {% if text %}
-        <h3>Rendered</h3>
-        <div>{{ text|oembed }}</div>
+      {% load micawber_tags %} {% if text %}
+      <h3>Rendered</h3>
+      <div>{{ text|oembed }}</div>
 
-        <h3>Extracted data</h3>
-        <textarea cols="50" rows="5">
-          {{ text|extract_oembed }}
-        </textarea>
-        {% endif %}
+      <h3>Extracted data</h3>
+      <textarea cols="50" rows="5">
+        {{ text|extract_oembed }}
+      </textarea>
+      {% endif %}
 
-        <h2>HTML renderer</h2>
-        <form method="get">
-          <p>
-            <label>Enter some html</label>
-          </p>
-          <p>
-            <textarea cols="50" rows="5" name="text">{{ html|safe }}</textarea>
-          </p>
-          <p>
-            <button type="submit">Render</button>
-          </p>
-        </form>
+      <h2>HTML renderer</h2>
+      <form method="get">
+        <p>
+          <label>Enter some html</label>
+        </p>
+        <p>
+          <textarea cols="50" rows="5" name="text">{{ html|safe }}</textarea>
+        </p>
+        <p>
+          <button type="submit">Render</button>
+        </p>
+      </form>
 
-        {% load micawber_tags %} {% if html %}
-        <h3>Rendered</h3>
-        <div>{{ html|oembed_html }}</div>
-        {% endif %}
-      </div>
+      {% load micawber_tags %} {% if html %}
+      <h3>Rendered</h3>
+      <div>{{ html|oembed_html }}</div>
+      {% endif %}
+    </div> -->
   </body>
 </html>
 
