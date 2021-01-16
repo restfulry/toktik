@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SignUpForm, QuestionForm
-from .models import Question, Member, Answer
+from .models import Question, Member, Answer, Like
 
 from .forms import AnswerForm
 
@@ -91,10 +91,15 @@ def add_answer(request, question_id):
     return redirect('question_detail', question_id=question_id)
 
 
-def like_answer(request, answer_id):
+def like_answer(request, answer_id, user_id):
     answer = Answer.objects.get(id=answer_id)
-    answer.likes.User = request.user
-    answer.save()
+    user = Member.objects.get(id=user_id)
+
+    like = Like()
+    like.answer = answer
+    like.user_id = user_id
+    like.save()
+
     return redirect('home')
 
 

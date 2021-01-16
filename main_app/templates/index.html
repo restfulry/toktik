@@ -27,7 +27,7 @@
               {{ answer.answer|oembed:"300x800" }}
             </div>
             <div>
-              <form action="{% url 'like_answer' answer.id %}" method='POST'>
+              <form action="{% url 'like_answer' answer.id user.id %}" method='POST'>
                 {% csrf_token %}
                 <button type="submit" class="btn" name='answer_id'>
                   <div class="ms-5 heart"> 
