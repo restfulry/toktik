@@ -8,7 +8,7 @@
       <div class="image">
         {% if member.photo_set.all %}
         <img
-          class="responsive-img card-panel"
+          class="responsive-img card-panel image-detail"
           src="{{ member.photo_set.last.url }}"
           width="155"
           height="155"
@@ -37,7 +37,9 @@
         </div>
         <div class="button mt-2 d-flex flex-row align-items-center">
           <button class="btn btn-sm btn-outline-primary w-100">
-            <a href="{% url 'profile_update' member.id %}"> Edit Profile </a>
+            <a class="nounderline" href="{% url 'profile_update' member.id %}">
+              Edit Profile
+            </a>
           </button>
         </div>
       </div>

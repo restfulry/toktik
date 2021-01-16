@@ -14,7 +14,11 @@ body {
   text-align: center;
 }
 
-img {
+.image-detail {
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 25px;
+}
+
+.nounderline {
+  text-decoration: none !important;
 }
