@@ -59,7 +59,7 @@ class Answer(models.Model):
 
     is_anon = models.BooleanField(default=False)
     points = models.IntegerField(default='1000')
-    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
