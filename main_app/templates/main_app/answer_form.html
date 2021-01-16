@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+
+<div>
+  {% for answer in question.answer_set.all %} {{answer.answer}} {% endfor %}
+</div>
+
+{% endblock %}
