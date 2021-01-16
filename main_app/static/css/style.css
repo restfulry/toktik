@@ -13,3 +13,8 @@ body {
 .heart {
   text-align: center;
 }
+
+img {
+  border-radius: 50%;
+  margin-right: 5px;
+}

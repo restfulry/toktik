@@ -6,11 +6,20 @@
   <div class="card p-3">
     <div class="d-flex align-items-center">
       <div class="image">
+        {% if member.photo_set.all %}
+        <img
+          class="responsive-img card-panel"
+          src="{{ member.photo_set.last.url }}"
+          width="155"
+          height="155"
+        />
+        {% else %}
         <img
           src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
           class="rounded"
           width="155"
         />
+        {% endif %}
       </div>
       <div class="ml-3 w-100">
         <h4 class="mb-0 mt-0">
