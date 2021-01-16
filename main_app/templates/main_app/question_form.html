@@ -1,9 +1,21 @@
-{% block content %}
+{% block content %} {% load widget_tweaks %}
 
 <div class="form-group">
   <form action="{% url 'question_create' %}" method="post">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="Add Question" class="btn" />
+    {% csrf_token %}
+
+    <p class=>
+      {% render_field question_form.question class="form-control mb-2" placeholder="Start your question with What, How, Why, etc." %}
+      {%render_field question_form.category class="form-control mb-2" placeholder="Start your question with What, How, Why, etc." %}
+      <span>Post as Anonymous </span>{%render_field question_form.is_anon class="form-check-input mb-2" %}
+    </p>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Cancel
+      </button>
+      <input type="submit" value="Add Question" class="btn btn-primary" />
+    </div>
   </form>
 </div>
 

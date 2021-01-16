@@ -29,20 +29,21 @@ class QuestionDelete(DeleteView):
 
 def questions_index(request):
     questions = Question.objects.all()
-    return render(request, 'questions/index.html', {'questions': questions})
+    return render(request, 'questions/index.html', {'questions': questions, 'question_form': QuestionForm})
 
 
 def question_detail(request, question_id):
     question = Question.objects.get(id=question_id)
     answer_form = AnswerForm()
-    return render(request, 'main_app/question_detail.html', {'question': question, 'answer_form': answer_form})
+    return render(request, 'main_app/question_detail.html', {'question': question, 'answer_form': answer_form, 'question_form': QuestionForm})
 
 
 def home(request):
-    text = request.GET.get('text', '')
+    # text = request.GET.get('text', '')
     questions = Question.objects.all()
     answers = Answer.objects.all()
-    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'form': QuestionForm})
+    # return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'question_form': QuestionForm})
+    return render(request, 'index.html', {'questions': questions, 'answers': answers, 'question_form': QuestionForm})
 
 
 def signup(request):
@@ -64,14 +65,15 @@ def signup(request):
         else:
             error_message = 'Invalid sign up - try again'
     form = SignUpForm()
-    context = {'form': form, 'error_message': error_message}
+    context = {'form': form, 'error_message': error_message,
+               'question_form': QuestionForm}
     return render(request, 'registration/signup.html', context)
 
 
 def profile_detail(request, member_id):
     member = Member.objects.get(id=member_id)
     return render(request, 'profile/detail.html', {
-        'member': member
+        'member': member, 'question_form': QuestionForm
     })
 
 
