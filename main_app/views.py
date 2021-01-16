@@ -85,6 +85,12 @@ def add_answer(request, question_id):
     return redirect('question_detail', question_id=question_id)
 
 
+def like_answer(request):
+    answer = request.GET.get('answer_id')
+    answer.likes.add(request.user.id)
+    return render(request, 'index.html')
+
+
 class ProfileUpdate(UpdateView):
     model = Member
     fields = ['email', 'first_name', 'last_name']
