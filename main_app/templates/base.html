@@ -26,6 +26,42 @@
     ></script>
   </head>
   <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            {% include 'main_app/question_form.html' %}
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary">Add Question</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="row min-vh-100 flex-column flex-md-row">
         <aside class="col-12 col-md-3 p-0 flex-shrink-1 sticky-top">
@@ -139,7 +175,12 @@
                   >
                 </li>
                 <li class="nav-item" style="margin-bottom: 10px">
-                  <a class="nav-link pl-0" href="{% url 'question_create' %}">
+                  <a
+                    class="nav-link pl-0"
+                    href="{% url 'question_create' %}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
