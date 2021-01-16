@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import SignUpForm
-from .models import Question, Member
+from .forms import SignUpForm, QuestionForm
+from .models import Question, Member, Answer
 
 from .forms import AnswerForm
 
 
 class QuestionCreate(CreateView):
     model = Question
-    fields = ['question', 'category']
+    form_class = QuestionForm
+    # fields = ['question', 'category', 'is_anon']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -39,7 +40,9 @@ def question_detail(request, question_id):
 
 def home(request):
     text = request.GET.get('text', '')
-    return render(request, 'index.html', dict(text=text))
+    questions = Question.objects.all()
+    answers = Answer.objects.all()
+    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'form': QuestionForm})
 
 
 def signup(request):

@@ -1,3 +1,15 @@
 nav {
   background-color: white !important;
 }
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.qtext {
+  font-weight: 700;
+}
+
+.heart {
+  text-align: center;
+}

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import Answer
+from .models import Answer, Question
 
 
 class SignUpForm(UserCreationForm):
@@ -12,11 +12,29 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name',
-                  'email', 'password1', 'password2',)
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password1', 'password2']
 
 
 class AnswerForm(ModelForm):
     class Meta:
         model = Answer
         fields = ['answer', 'is_anon']
+
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['question', 'category', 'is_anon']
+
+        widgets = {
+            'question': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Question'}),
+            'category': forms.Select(attrs={'class': 'form-select form-select-lg', 'id': 'floatingSelectGrid'}),
+            'is_anon': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+
+        labels = {
+            'question': '',
+            'category': '',
+            'is_anon': 'Anonymous'
+        }
