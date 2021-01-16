@@ -66,6 +66,6 @@ class Answer(models.Model):
         return self.answer
 
 
-class Likes(models.Model):
+class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
