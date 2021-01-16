@@ -40,6 +40,7 @@ class Question(models.Model):
     )
     is_anon = models.BooleanField(default=False)
     points = models.IntegerField(editable=False, default='1000')
+    likes = models.IntegerField(editable=False, default='0')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -57,7 +58,8 @@ class Answer(models.Model):
     answer = models.URLField(max_length=400)
 
     is_anon = models.BooleanField(default=False)
-
+    points = models.IntegerField(editable=False, default='1000')
+    likes = models.IntegerField(editable=False, default='0')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
