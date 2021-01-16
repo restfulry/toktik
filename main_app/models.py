@@ -69,3 +69,11 @@ class Answer(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for member_id: {self.member_id} @{self.url}"
