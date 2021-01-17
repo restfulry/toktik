@@ -59,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_cookies_samesite.middleware.CookiesSameSite',
 ]
 
 ROOT_URLCONF = 'toktik.urls'
@@ -142,12 +141,12 @@ MICAWBER_DEFAULT_SETTINGS = {
     'maxheight': 800,
 }
 
-DCS_SESSION_COOKIES_SAMESITE = 'None'
-DCS_SESSION_COOKIE_SAMESITE_FORCE_ALL = True
-DCS_SESSION_COOKIE_SECURE = True
+
+SESSION_COOKIE_SAMESITE = 'Strict'
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE_FORCE_ALL = True
 
 
 django_heroku.settings(locals())
-
 
 WSGI_APPLICATION = 'toktik.wsgi.application'
