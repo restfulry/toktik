@@ -17,22 +17,7 @@
 
     <div class="card mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <div class="card-body">
-        <div class="image">
-          {% if answer.member.photo_set.all %}
-          <img
-            class="responsive-img card-panel image-detail"
-            src="{{ answer.member.photo_set.last.url }}"
-            width="45"
-            height="45"
-          />
-          {% else %}
-          <img
-            src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
-            class="rounded"
-            width="45"
-          />
-          {% endif %}
-        </div>
+        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
         <span class="ms-2"> {{answer.user.first_name}} {{answer.user.last_name}} </span> 
         <p class="qtext mt-2">{{answer.question}}</p>
 
@@ -77,17 +62,14 @@
           <button type="submit">Render</button>
         </p>
       </form>
-
       {% load micawber_tags %} {% if text %}
       <h3>Rendered</h3>
       <div>{{ text|oembed }}</div>
-
       <h3>Extracted data</h3>
       <textarea cols="50" rows="5">
         {{ text|extract_oembed }}
       </textarea>
       {% endif %}
-
       <h2>HTML renderer</h2>
       <form method="get">
         <p>
@@ -100,7 +82,6 @@
           <button type="submit">Render</button>
         </p>
       </form>
-
       {% load micawber_tags %} {% if html %}
       <h3>Rendered</h3>
       <div>{{ html|oembed_html }}</div>
