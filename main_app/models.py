@@ -61,9 +61,14 @@ class Answer(models.Model):
     points = models.IntegerField(default='1000')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    liked = models.ManyToManyField(User, default=None, blank=True)
 
     def __str__(self):
         return self.answer
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
 
 
 class Like(models.Model):
