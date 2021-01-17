@@ -27,11 +27,16 @@
     <span class="ms-2">
       {{answer.user.first_name}} {{answer.user.last_name}}
     </span>
-    <p class="qtext mt-2">{{answer.question}}</p>
 
-    <div class="d-flex justify-content-between align-items-center">
+    <a href="{% url 'question_detail' answer.question.id %}">
+      <p class="qtext mt-2">{{answer.question}}</p>
+    </a>
+
+    <div
+      class="d-flex justify-content-between align-items-center video-container"
+    >
       <div class="d-flex justify-content-between align-items-center">
-        <div>{{ answer.answer|oembed:"300x800" }}</div>
+        <div>{{ answer.answer|oembed:"500" }}</div>
         <div>
           <div class="ms-5 heart">
             <svg
@@ -101,5 +106,19 @@
       <div>{{ html|oembed_html }}</div>
       {% endif %}
     </div> -->
+
+<iframe id="theframe"> </iframe>
+
+<script>
+  var rawframe = document.getElementById("theframe");
+  var framedoc = rawframe.contentDocument;
+  if (!framedoc && rawframe.contentWindow) {
+    framedoc = rawframe.contentWindow.document;
+  }
+  var newScript = document.createElement("script");
+  newScript.type = "text/javascript";
+  newScript.src = "https://www.tiktok.com/embed.js";
+  framedoc.body.appendChild(newScript);
+</script>
 
 {% endblock %}
