@@ -6,13 +6,15 @@ from .models import Question, Member, Answer, Photo
 import uuid
 import boto3
 from .forms import AnswerForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # AWS Base URL and S3 Bucket
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'toktikproject'
 
 
-class QuestionCreate(CreateView):
+class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
     form_class = QuestionForm
     # fields = ['question', 'category', 'is_anon']
@@ -22,21 +24,23 @@ class QuestionCreate(CreateView):
         return super().form_valid(form)
 
 
-class QuestionUpdate(UpdateView):
+class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
     fields = ['question', 'category']
 
 
-class QuestionDelete(DeleteView):
+class QuestionDelete(LoginRequiredMixin, DeleteView):
     model = Question
     success_url = '/'
 
 
+@login_required
 def questions_index(request):
     questions = Question.objects.all()
     return render(request, 'questions/index.html', {'questions': questions})
 
 
+@login_required
 def question_detail(request, question_id):
     question = Question.objects.get(id=question_id)
     answer_form = AnswerForm()
@@ -79,6 +83,7 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
+@login_required
 def profile_detail(request, member_id):
     member = Member.objects.get(id=member_id)
     return render(request, 'profile/detail.html', {
@@ -86,6 +91,7 @@ def profile_detail(request, member_id):
     })
 
 
+@login_required
 def add_answer(request, question_id):
     form = AnswerForm(request.POST)
     if form.is_valid():
@@ -96,11 +102,12 @@ def add_answer(request, question_id):
     return redirect('question_detail', question_id=question_id)
 
 
-class ProfileUpdate(UpdateView):
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Member
     fields = ['email', 'first_name', 'last_name']
 
 
+@login_required
 def change_photo(request, member_id):
     member = Member.objects.get(id=member_id)
     photo_file = request.FILES.get('photo-file', None)
