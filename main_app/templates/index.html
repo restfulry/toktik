@@ -77,17 +77,14 @@
           <button type="submit">Render</button>
         </p>
       </form>
-
       {% load micawber_tags %} {% if text %}
       <h3>Rendered</h3>
       <div>{{ text|oembed }}</div>
-
       <h3>Extracted data</h3>
       <textarea cols="50" rows="5">
         {{ text|extract_oembed }}
       </textarea>
       {% endif %}
-
       <h2>HTML renderer</h2>
       <form method="get">
         <p>
@@ -100,7 +97,6 @@
           <button type="submit">Render</button>
         </p>
       </form>
-
       {% load micawber_tags %} {% if html %}
       <h3>Rendered</h3>
       <div>{{ html|oembed_html }}</div>
