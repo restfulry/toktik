@@ -23,9 +23,6 @@ class AnswerForm(ModelForm):
 
 
 class QuestionForm(forms.ModelForm):
-    category = forms.ModelChoiceField(
-        label="", queryset=Question.objects.filter().values_list('category', flat=True), empty_label="Placeholder")
-
     class Meta:
         model = Question
         fields = ['question', 'category', 'is_anon']

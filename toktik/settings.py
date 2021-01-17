@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import django_heroku
 from pathlib import Path
 
 MICAWBER_TEMPLATE_EXTENSIONS = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_cookies_samesite.middleware.CookiesSameSite',
 ]
 
 ROOT_URLCONF = 'toktik.urls'
@@ -139,3 +141,13 @@ MICAWBER_DEFAULT_SETTINGS = {
     'maxwidth': 800,
     'maxheight': 800,
 }
+
+DCS_SESSION_COOKIES_SAMESITE = 'None'
+DCS_SESSION_COOKIE_SAMESITE_FORCE_ALL = True
+DCS_SESSION_COOKIE_SECURE = True
+
+
+django_heroku.settings(locals())
+
+
+WSGI_APPLICATION = 'toktik.wsgi.application'
