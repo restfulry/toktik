@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import django_heroku
 from pathlib import Path
 
+
 MICAWBER_TEMPLATE_EXTENSIONS = [
     ('oembed_no_urlize', {'urlize_all': False}),
 ]
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django_samesite_none.middleware.SameSiteNoneMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -141,7 +141,6 @@ MICAWBER_DEFAULT_SETTINGS = {
     'maxwidth': 800,
     'maxheight': 800,
 }
-
 
 django_heroku.settings(locals())
 
