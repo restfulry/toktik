@@ -11,6 +11,11 @@ CATEGORIES = (
     ('OTH', 'OTHER')
 )
 
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike')
+)
+
 
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -61,7 +66,8 @@ class Answer(models.Model):
     points = models.IntegerField(default='1000')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    liked = models.ManyToManyField(User, default=None, blank=True)
+    liked = models.ManyToManyField(
+        User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
         return self.answer
@@ -74,6 +80,11 @@ class Answer(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES,
+                             default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.answer)
 
 
 class Photo(models.Model):
