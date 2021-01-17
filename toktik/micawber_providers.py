@@ -5,4 +5,4 @@ oembed_providers = bootstrap_basic(cache)
 
 # add a custom provider
 oembed_providers.register('https://www.tiktok.com/\S*',
-                          Provider('https://www.tiktok.com/oembed?'))
+                          Provider('https://www.tiktok.com/oembed'))

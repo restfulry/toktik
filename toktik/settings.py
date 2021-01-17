@@ -143,9 +143,6 @@ MICAWBER_DEFAULT_SETTINGS = {
 }
 
 
-SESSION_COOKIE_SECURE = True
-
-
 django_heroku.settings(locals())
 
 WSGI_APPLICATION = 'toktik.wsgi.application'
