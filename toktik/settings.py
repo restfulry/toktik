@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import django_heroku
 from pathlib import Path
+
 
 MICAWBER_TEMPLATE_EXTENSIONS = [
     ('oembed_no_urlize', {'urlize_all': False}),
@@ -139,3 +141,7 @@ MICAWBER_DEFAULT_SETTINGS = {
     'maxwidth': 800,
     'maxheight': 800,
 }
+
+django_heroku.settings(locals())
+
+WSGI_APPLICATION = 'toktik.wsgi.application'

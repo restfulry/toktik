@@ -164,6 +164,7 @@
                     <span class="d-none d-md-inline ms-2"> Home</span></a
                   >
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item" style="margin-bottom: 10px">
                   <a
                     class="nav-link pl-0"
@@ -207,7 +208,7 @@
                     <span class="d-none d-md-inline ms-2"> Answer</span></a
                   >
                 </li>
-                {% if user.is_authenticated %}
+
                 <!-- <li class="nav-item" style="margin-bottom: 10px">
                   <a class="nav-link pl-0" href="#">
                     <svg
