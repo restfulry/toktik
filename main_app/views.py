@@ -96,15 +96,27 @@ def add_answer(request, question_id):
     return redirect('question_detail', question_id=question_id)
 
 
-def like_answer(request, answer_id, user_id):
-    answer = Answer.objects.get(id=answer_id)
-    user = Member.objects.get(id=user_id)
+def like_answer(request):
+    user = request.user
+    if request.method == 'POST':
+        answer_id = request.POST.get('answer_id')
+        answer = Answer.objects.get(id=answer_id)
 
-    like = Like()
-    like.answer = answer
-    like.user_id = user_id
-    like.save()
+        if user in answer.liked.all():
+            answer.liked.remove(user)
+        else:
+            answer.liked.add(user)
 
+        like, created = Like.objects.get_or_create(
+            user=user, answer_id=answer_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
     return redirect('home')
 
 
