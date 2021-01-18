@@ -11,6 +11,11 @@ CATEGORIES = (
     ('OTH', 'OTHER')
 )
 
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike')
+)
+
 
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -39,7 +44,8 @@ class Question(models.Model):
         choices=CATEGORIES,
     )
     is_anon = models.BooleanField(default=False)
-    points = models.IntegerField(editable=False, default='1000')
+    points = models.IntegerField(default='1000')
+    likes = models.IntegerField(default='0')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -57,12 +63,28 @@ class Answer(models.Model):
     answer = models.URLField(max_length=400)
 
     is_anon = models.BooleanField(default=False)
-
+    points = models.IntegerField(default='1000')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    liked = models.ManyToManyField(
+        User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
         return self.answer
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES,
+                             default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.answer)
 
 
 class Photo(models.Model):
