@@ -5,12 +5,28 @@
 <div class="container mt-5 d-flex justify-content-center">
   <div class="card p-3">
     <div class="d-flex align-items-center">
-      <div class="image">
-        <img
-          src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
-          class="rounded"
-          width="155"
-        />
+      <div class="col-sm">
+        <div class="image image-detail">
+          {% if member.photo_set.all %}
+          <img
+            class="responsive-img card-panel image-detail"
+            src="{{ member.photo_set.last.url }}"
+            width="140"
+            height="140"
+          />
+          {% else %}
+          <img
+            src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
+            class="rounded"
+            width="155"
+          />
+          {% endif %}
+        </div>
+        <button class="btn btn-sm btn-outline-primary">
+          <a class="nounderline" href="{% url 'change_photo' member.id %}">
+            Change Photo
+          </a>
+        </button>
       </div>
       <form action="" method="post">
         <!-- Django requires the following for security purposes -->
@@ -23,7 +39,7 @@
           <input
             type="submit"
             value="Update"
-            class="button mt-2 d-flex flex-row align-items-center btn btn-sm btn-outline-primary"
+            class="button mt-2 d-flex flex-row align-items-center btn btn-outline-primary"
           />
         </div>
       </form>
