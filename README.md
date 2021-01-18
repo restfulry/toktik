@@ -13,8 +13,12 @@ David Harris, Ryan Lee, Irfan Ahmd
 
 ## Technologies Used
 
-- Django
+- Django & Python
 - PSQL
+- Deployed on Heroku
+- Styled with Bootstrap
+- Video render with Micawber
+- Database hosted with AWS Boto3
 
 ## Getting Started
 
