@@ -22,5 +22,7 @@ urlpatterns = [
          views.QuestionDelete.as_view(), name='question_delete'),
     path('like/',
          views.like_answer, name='like_answer'),
+    path('like_q/',
+         views.like_question, name='like_question'),
     path('questions/<str:category>/', views.questions_sort, name='questions_sort')
 ]
