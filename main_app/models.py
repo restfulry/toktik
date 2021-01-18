@@ -84,8 +84,8 @@ class Answer(models.Model):
 
 class Like_Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.ForeignKey(
-        Question, on_delete=models.CASCADE, blank=True)
+    answer = models.ForeignKey(
+        Answer, on_delete=models.CASCADE, blank=True)
     value = models.CharField(choices=LIKE_CHOICES,
                              default='Like', max_length=10)
 
