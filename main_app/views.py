@@ -131,7 +131,7 @@ def like_question(request):
     user = request.user
     if request.method == 'POST':
         question_id = request.POST.get('question_id')
-        question = question.objects.get(id=question_id)
+        question = Question.objects.get(id=question_id)
 
         if user in question.liked.all():
             question.liked.remove(user)
@@ -148,7 +148,7 @@ def like_question(request):
                 like.value = 'Like'
 
         like.save()
-    return redirect('home')
+    return redirect('questions_index')
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):

@@ -46,9 +46,14 @@
       <p>Asked by: {{ question.user.username }}</p>
     </div>
   </a>
-  <form action="{% url 'like_answer' %}" method="POST">
+  <form action="{% url 'like_question' %}" method="POST">
     {% csrf_token %}
-    <button type="submit" class="btn" name="answer_id" value="{{ answer.id }}">
+    <button
+      type="submit"
+      class="btn"
+      name="question_id"
+      value="{{ question.id }}"
+    >
       <div class="ms-5 heart">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +70,6 @@
       </div>
     </button>
   </form>
-  <div class="ms-5">{{ answer.liked.all.count }}</div>
+  <div class="ms-5">{{ question.liked.all.count }}</div>
 </div>
 {% endfor %} {% endblock %}

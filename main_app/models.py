@@ -101,7 +101,7 @@ class Like_Question(models.Model):
                              default='Like', max_length=10)
 
     def __str__(self):
-        return str(self.answer)
+        return str(self.question)
 
 
 class Photo(models.Model):
