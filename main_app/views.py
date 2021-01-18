@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SignUpForm, QuestionForm
-from .models import Question, Member, Answer, Photo
+from .models import Question, Member, Answer, Photo, Like
 import uuid
 import boto3
 from .forms import AnswerForm
@@ -102,6 +102,30 @@ def add_answer(request, question_id):
         new_answer.user_id = request.user.id
         new_answer.save()
     return redirect('question_detail', question_id=question_id)
+
+
+def like_answer(request):
+    user = request.user
+    if request.method == 'POST':
+        answer_id = request.POST.get('answer_id')
+        answer = Answer.objects.get(id=answer_id)
+
+        if user in answer.liked.all():
+            answer.liked.remove(user)
+        else:
+            answer.liked.add(user)
+
+        like, created = Like.objects.get_or_create(
+            user=user, answer_id=answer_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
+    return redirect('home')
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
