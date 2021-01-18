@@ -1,7 +1,12 @@
-{% extends 'base.html' %} {% block content %}
+{% block content %}
 
 <div>
-  {% for answer in question.answer_set.all %} {{answer.answer}} {% endfor %}
+  <div class="form-group">
+    <form action="{% url 'add_answer' question.id %}" method="post">
+      {% csrf_token %} {{ answer_form.as_p }}
+      <input type="submit" class="btn" value="Submit" />
+    </form>
+  </div>
 </div>
 
 {% endblock %}

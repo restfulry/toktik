@@ -4,7 +4,7 @@
   <form action="{% url 'question_create' %}" method="post">
     {% csrf_token %}
 
-    <p class=>
+    <p>
       {% render_field question_form.question class="form-control mb-2" placeholder="Start your question with What, How, Why, etc." %}
       
     <div class="row">

@@ -37,7 +37,8 @@ class QuestionDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def questions_index(request):
     questions = Question.objects.all()
-    return render(request, 'questions/index.html', {'questions': questions, 'question_form': QuestionForm})
+    answer_form = AnswerForm()
+    return render(request, 'questions/index.html', {'questions': questions, 'question_form': QuestionForm, 'answer_form': answer_form})
 
 
 @login_required
@@ -92,7 +93,7 @@ def profile_detail(request, member_id):
     user_answers = Answer.objects.filter(user=user.id)
     answers = Answer.objects.all()
     return render(request, 'profile/detail.html', {
-        'member': member, 'user_questions': user_questions, 'user_answers': user_answers
+        'member': member, 'user_questions': user_questions, 'user_answers': user_answers, 'question_form': QuestionForm
     })
 
 
