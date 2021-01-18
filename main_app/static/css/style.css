@@ -6,6 +6,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+p {
+  margin: 2px;
+}
+
 .qtext {
   font-weight: 700;
 }

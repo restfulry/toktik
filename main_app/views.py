@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import SignUpForm, QuestionForm
+from .forms import SignUpForm, QuestionForm, AnswerForm
 from .models import Question, Member, Answer, Photo, Like_Answer, Like_Question
 import uuid
 import boto3
-from .forms import AnswerForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse

@@ -48,7 +48,7 @@
         class="nounderline"
         href="{% url 'question_detail' answer.question.id %}"
       >
-        <p class="qtext mt-2">{{answer.question}}</p>
+        <p class="qtext mt-2 mb-2">{{answer.question}}</p>
       </a>
       <div
         class="d-flex justify-content-between align-items-center video-container"
@@ -63,12 +63,13 @@
 
     <div class="card-content mt-2">
       <a
-        class="btn btn-primary mb-2"
+        class="btn btn-outline-dark btn-sm"
         data-bs-toggle="collapse"
         href="#collapseExample-{{answer.id}}"
         role="button"
         aria-expanded="false"
         aria-controls="collapseExample-{{answer.id}}"
+        id="answer_button"
         >Answer
       </a>
 
@@ -129,7 +130,7 @@
 
       {% endif %}
 
-      <div class="collapse" id="collapseExample-{{ answer.id }}">
+      <div class="collapse mt-2" id="collapseExample-{{ answer.id }}">
         <div class="card card-body">
           {% include 'main_app/answer_form_index.html' %}
         </div>

@@ -5,11 +5,11 @@
     {% csrf_token %}
 
     <p>
-      {% render_field question_form.question class="form-control mb-2" placeholder="Start your question with What, How, Why, etc." %}
-      
-    <div class="row">
-      <div class = "col-4 col-form-label"> Select Category </div>
-      <div class = "col-8">
+      {% render_field question_form.question class="form-control mb-2" placeholder="Start your question with What, How, Why, etc."%}
+
+    <div class="form-group row">
+      <label class = "col-sm-4 col-form-label"> Select Category </label>
+      <div class = "col-sm-8">
         {%render_field question_form.category class="form-control mb-2" %}
       </div>
     </div>
