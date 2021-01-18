@@ -54,11 +54,10 @@ def questions_sort(request, category):
 
 
 def home(request):
-    # text = request.GET.get('text', '')
+    text = request.GET.get('text', '')
     questions = Question.objects.all()
     answers = Answer.objects.all()
-    # return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'question_form': QuestionForm})
-    return render(request, 'index.html', {'questions': questions, 'answers': answers, 'question_form': QuestionForm})
+    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'question_form': QuestionForm})
 
 
 def signup(request):
