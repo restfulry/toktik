@@ -43,7 +43,7 @@
   <span class="ms-2">
     {{answer.user.member.first_name}} {{answer.user.member.last_name}}
   </span>
-  <a href="{% url 'question_detail' answer.question.id %}">
+  <a class= "nounderline" href="{% url 'question_detail' answer.question.id %}">
     <p class="qtext mt-2">{{answer.question}}</p>
   </a>
   <div
