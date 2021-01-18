@@ -45,7 +45,8 @@ class Question(models.Model):
     )
     is_anon = models.BooleanField(default=False)
     points = models.IntegerField(default='1000')
-    likes = models.IntegerField(default='0')
+    liked = models.ManyToManyField(
+        User, default=None, blank=True, related_name='liked_question')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,6 +57,10 @@ class Question(models.Model):
 
     def get_absolute_url(self):
         return reverse("question_detail", kwargs={"question_id": self.id})
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
 
 
 class Answer(models.Model):
@@ -77,9 +82,21 @@ class Answer(models.Model):
         return self.liked.all().count()
 
 
-class Like(models.Model):
+class Like_Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, blank=True)
+    value = models.CharField(choices=LIKE_CHOICES,
+                             default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.answer)
+
+
+class Like_Question(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, blank=True)
     value = models.CharField(choices=LIKE_CHOICES,
                              default='Like', max_length=10)
 

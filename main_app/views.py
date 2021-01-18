@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SignUpForm, QuestionForm
-from .models import Question, Member, Answer, Photo, Like
+from .models import Question, Member, Answer, Photo, Like_Answer, Like_Question
 import uuid
 import boto3
 from .forms import AnswerForm
@@ -114,8 +114,32 @@ def like_answer(request):
         else:
             answer.liked.add(user)
 
-        like, created = Like.objects.get_or_create(
+        like, created = Like_Answer.objects.get_or_create(
             user=user, answer_id=answer_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
+    return redirect('home')
+
+
+def like_question(request):
+    user = request.user
+    if request.method == 'POST':
+        question_id = request.POST.get('question_id')
+        question = question.objects.get(id=question_id)
+
+        if user in question.liked.all():
+            question.liked.remove(user)
+        else:
+            question.liked.add(user)
+
+        like, created = Like_Question.objects.get_or_create(
+            user=user, question_id=question_id)
 
         if not created:
             if like.value == 'Like':
