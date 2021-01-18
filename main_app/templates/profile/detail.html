@@ -46,5 +46,41 @@
     </div>
   </div>
 </div>
+<hr />
+<div class="row">
+  <h3>{{ member.first_name }}'s Questions</h3>
+    {% if user_questions %}
+      {% for question in user_questions %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span>{{ question.question }}</span>
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Questions Yet</h5>
+    {% endif %}
+</div>
+<hr />
+<div class="row">
+  <h3>{{ member.first_name }}'s Answers</h3>
+    {% if user_answers %}
+      {% for answer in user_answers %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span>{{ answer.question }}</span>
+              <span>{{ answer.answer }}</span>
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Answers Yet</h5>
+    {% endif %}
+</div>
 
-{% endblock %}
+  {% endblock %}
+</div>
