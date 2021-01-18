@@ -57,7 +57,8 @@ def home(request):
     text = request.GET.get('text', '')
     questions = Question.objects.all()
     answers = Answer.objects.all()
-    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'form': QuestionForm})
+    photos = Photo.objects.all()
+    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'form': QuestionForm, 'photos': photos})
 
 
 def signup(request):
