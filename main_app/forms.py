@@ -27,14 +27,14 @@ class QuestionForm(forms.ModelForm):
         model = Question
         fields = ['question', 'category', 'is_anon']
 
-        widgets = {
-            'question': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Question'}),
-            'category': forms.Select(attrs={'class': 'form-select form-select-lg', 'id': 'floatingSelectGrid'}),
-            'is_anon': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
+        # widgets = {
+        #     'question': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Start your question with "What", "How", "Why", etc'}),
+        #     'category': forms.Select(attrs={'class': 'form-select form-select-lg', 'id': 'floatingSelectGrid'}),
+        #     'is_anon': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        # }
 
-        labels = {
-            'question': '',
-            'category': '',
-            'is_anon': 'Anonymous'
-        }
+        # labels = {
+        #     'question': '',
+        #     'category': '',
+        #     'is_anon': 'Anonymous'
+        # }

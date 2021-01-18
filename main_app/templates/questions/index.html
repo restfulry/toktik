@@ -1,21 +1,41 @@
 {% extends 'base.html' %} {% block content %}
 
+<div class="pt-md-5"></div>
+
 <h1>Answer a Question</h1>
 
-
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+  <button
+    class="btn btn-secondary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
     All Categories
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li><a class="dropdown-item" href="{% url 'questions_index' %}">All</a></li>
-    <li><a class="dropdown-item" href="{% url 'questions_sort' 'SCI' %}">Science</a></li>
-    <li><a class="dropdown-item" href="{% url 'questions_sort' 'MAT' %}">Mathematics</a></li>
-    <li><a class="dropdown-item" href="{% url 'questions_sort' 'GAR' %}">Garden</a></li>
-    <li><a class="dropdown-item" href="{% url 'questions_sort' 'OTH' %}">Other</a></li>
+    <li>
+      <a class="dropdown-item" href="{% url 'questions_sort' 'SCI' %}"
+        >Science</a
+      >
+    </li>
+    <li>
+      <a class="dropdown-item" href="{% url 'questions_sort' 'MAT' %}"
+        >Mathematics</a
+      >
+    </li>
+    <li>
+      <a class="dropdown-item" href="{% url 'questions_sort' 'GAR' %}"
+        >Garden</a
+      >
+    </li>
+    <li>
+      <a class="dropdown-item" href="{% url 'questions_sort' 'OTH' %}">Other</a>
+    </li>
   </ul>
 </div>
-
 
 {% for question in questions %}
 <div class="card">
