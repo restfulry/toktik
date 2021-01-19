@@ -63,7 +63,7 @@
 
     <div class="card-content mt-2">
       <a
-        class="btn btn-outline-dark btn-sm"
+        class="btn btn-outline-dark btn-sm answer_btn"
         data-bs-toggle="collapse"
         href="#collapseExample-{{answer.id}}"
         role="button"
@@ -197,10 +197,6 @@
         },
       });
     });
-  });
-
-  $("#exampleModal").on("shown.bs.modal", function () {
-    $("#id_question").focus();
   });
 </script>
 

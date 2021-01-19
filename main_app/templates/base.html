@@ -335,4 +335,12 @@
   $("#exampleModal").on("shown.bs.modal", function () {
     $("#id_question").focus();
   });
+
+  $(".answer_btn").click(function (e) {
+    const answer_id = $(this).attr("href").match(/\d/g).join("");
+    $(`#collapseExample-${answer_id}`).on("shown.bs.collapse", function () {
+      console.log("works");
+      $(`#collapseExample-${answer_id}`).find("input[type=url]").focus();
+    });
+  });
 </script>
