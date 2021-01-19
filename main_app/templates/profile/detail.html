@@ -111,7 +111,7 @@
         </p>
 
         {% endfor %} {% else %}
-        <p>No Questions Yet</p>
+        <p class="m-5">No Questions Yet</p>
       </li>
       {% endif %}
     </ul>
@@ -142,7 +142,7 @@
           </div>
         </div>
         {% endfor %} {% else %}
-        <p>No Answeres Yet</p>
+        <p class="m-5">No Answeres Yet</p>
       </li>
 
       {% endif %}
@@ -154,7 +154,8 @@
     role="tabpanel"
     aria-labelledby="nav-likes-tab"
   >
-    ...
+    {% if like_answers %} {% for like in like_answers %} {{like}}
+    {%endfor%}{%endif%}
   </div>
 </div>
 
