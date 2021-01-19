@@ -92,7 +92,7 @@ def profile_detail(request, member_id):
     user_answers = Answer.objects.filter(user=user.id)
     answers = Answer.objects.all()
     return render(request, 'profile/detail.html', {
-        'member': member, 'user_questions': user_questions, 'user_answers': user_answers
+        'member': member, 'user_questions': user_questions, 'user_answers': user_answers, 'question_form': QuestionForm
     })
 
 

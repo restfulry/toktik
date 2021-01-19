@@ -17,7 +17,7 @@ urlpatterns = [
     path('questions/<int:question_id>/add_answer/',
          views.add_answer, name='add_answer'),
     path('questions/<int:pk>/update/',
-         views.QuestionUpdate.as_view(), name='question_update'),
+         views.QuestionUpdate.as_view(template_name="main_app/question_update_form.html"), name='question_update'),
     path('questions/<int:pk>/delete/',
          views.QuestionDelete.as_view(), name='question_delete'),
     path('like/',
