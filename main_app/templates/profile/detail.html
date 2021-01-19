@@ -142,7 +142,7 @@
           </div>
         </div>
         {% endfor %} {% else %}
-        <p class="m-5">No Answeres Yet</p>
+        <p class="m-5">No Answers Yet</p>
       </li>
 
       {% endif %}
@@ -154,8 +154,31 @@
     role="tabpanel"
     aria-labelledby="nav-likes-tab"
   >
-    {% if like_answers %} {% for like in like_answers %} {{like}}
-    {%endfor%}{%endif%}
+    <ul class="list-group list-group-flush border-bottom">
+      {% if like_answers %}{% for like in like_answers %}
+      <li class="list-group-item mt-2">
+        <a
+          class="nounderline"
+          href="{% url 'question_detail' like.answer.question.id %}"
+        >
+          <p class="qtext mt-2 mb-2 fs-5 qtext">{{like.answer.question}}</p>
+        </a>
+
+        <div
+          class="d-flex justify-content-between align-items-center video-container"
+        >
+          <div class="card-content">
+            <span class="card-title fs-5 qtext"
+              >{{ like.answer.answer |oembed:"500" }}</span
+            >
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <p class="m-5">No Likes Yet</p>
+      </li>
+
+      {% endif %}
+    </ul>
   </div>
 </div>
 
