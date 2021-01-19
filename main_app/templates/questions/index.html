@@ -10,7 +10,8 @@
     data-bs-toggle="dropdown"
     aria-expanded="false"
   >
-    All Categories
+    {% if category %} {{category_full_name}} {% else %} Sort by Category
+    {%endif%}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li><a class="dropdown-item" href="{% url 'questions_index' %}">All</a></li>
