@@ -41,7 +41,7 @@
         width="45"
       />
       {% endif %}
-      <span class="ms-2">
+      <span class="ms-2 qtext">
         {{answer.user.member.first_name}} {{answer.user.member.last_name}}
       </span>
       <a
@@ -63,7 +63,7 @@
 
     <div class="card-content mt-2">
       <a
-        class="btn btn-outline-dark btn-sm"
+        class="btn btn-outline-dark btn-sm answer_btn"
         data-bs-toggle="collapse"
         href="#collapseExample-{{answer.id}}"
         role="button"
@@ -142,52 +142,6 @@
   </div>
 </div>
 {%endfor%}{% endif %}
-
-<!-- <div class="page">
-      <h2>Text renderer</h2>
-      <form method="get">
-        <p>
-          <label>Enter some text</label>
-        </p>
-        <p>
-          <textarea cols="50" rows="5" name="text">{{ text }}</textarea>
-          <small style="display: block"
-            >Try entering some urls to youtube videos</small
-          >
-        </p>
-        <p>
-          <button type="submit">Render</button>
-        </p>
-      </form>
-
-      {% load micawber_tags %} {% if text %}
-      <h3>Rendered</h3>
-      <div>{{ text|oembed }}</div>
-
-      <h3>Extracted data</h3>
-      <textarea cols="50" rows="5">
-        {{ text|extract_oembed }}
-      </textarea>
-      {% endif %}
-
-      <h2>HTML renderer</h2>
-      <form method="get">
-        <p>
-          <label>Enter some html</label>
-        </p>
-        <p>
-          <textarea cols="50" rows="5" name="text">{{ html|safe }}</textarea>
-        </p>
-        <p>
-          <button type="submit">Render</button>
-        </p>
-      </form>
-
-      {% load micawber_tags %} {% if html %}
-      <h3>Rendered</h3>
-      <div>{{ html|oembed_html }}</div>
-      {% endif %}
-    </div> -->
 
 <script type="text/javascript">
   $(document).ready(function () {

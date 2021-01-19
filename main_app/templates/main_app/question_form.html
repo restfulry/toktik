@@ -1,20 +1,22 @@
 {% block content %} {% load widget_tweaks %}
 
 <div class="form-group">
-  <form action="" method="post">
+  <form action="{% url 'question_create' %}" method="post">
     {% csrf_token %}
 
     <p>
-      {% render_field question_form.question class="form-control mb-2" placeholder="Start your question with What, How, Why, etc."%}
-
-    <div class="form-group row">
-      <label class = "col-sm-4 col-form-label"> Select Category </label>
-      <div class = "col-sm-8">
-        {%render_field question_form.category class="form-control mb-2" %}
+      <p class="mb-2">
+      {% render_field question_form.question class="form-control" placeholder="Start your question with What, How, Why, etc." %}
+      </p>
+      
+      <div class="input-group mb-2">
+        <label class="input-group-text" for="inputGroupSelect01">Select Category</label>
+          {%render_field question_form.category class="form-control" %}
       </div>
-    </div>
  
-      <span>Post as Anonymous </span>{%render_field question_form.is_anon class="form-check-input mb-2" %}
+      {% comment %} <p class="mb-2">
+        <span>Post as Anonymous </span>{%render_field question_form.is_anon class="form-check-input mb-2" %}
+      </p> {% endcomment %}
     </p>
 
     <div class="modal-footer">

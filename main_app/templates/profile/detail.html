@@ -1,86 +1,185 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load micawber_tags %}
 
-<h1 class="text-center">Profile</h1>
+<div class="pt-md-5"></div>
 
-<div class="container mt-5 d-flex justify-content-center">
-  <div class="card p-3">
-    <div class="d-flex align-items-center">
-      <div class="image">
-        {% if member.photo_set.all %}
-        <img
-          class="responsive-img card-panel image-detail"
-          src="{{ member.photo_set.last.url }}"
-          width="155"
-          height="155"
-        />
-        {% else %}
-        <img
-          src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
-          class="rounded"
-          width="155"
-        />
-        {% endif %}
-      </div>
-      <div class="ml-3 w-100">
-        <h4 class="mb-0 mt-0">
-          {{ member.first_name }} {{ member.last_name }}
-        </h4>
-        <span>Username: {{ member.user }}</span>
-        <br />
-        <span>Email: {{ member.email }}</span>
-        <div
-          class="p-2 mt-2 bg-primary d-flex justify-content-center rounded text-white stats"
+<div class="d-flex align-items-center justify-content-center">
+  <div class="image" style="display: inline-block">
+    {% if member.photo_set.all %}
+    <img
+      class="responsive-img card-panel image-detail"
+      src="{{ member.photo_set.last.url }}"
+      width="155"
+      height="155"
+    />
+    {% else %}
+    <img
+      src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
+      class="rounded"
+      width="155"
+    />
+    {% endif %}
+  </div>
+  <span class="mb-0 mt-0 fs-3 qtext"
+    >{{ member.first_name }} {{ member.last_name }}
+    <p>
+      <a
+        class="btn-sm btn fw-lighter btn-light mb-1"
+        href="{% url 'change_photo' member.id %}"
+      >
+        Update Photo
+      </a>
+      <a
+        class="btn-sm btn fw-lighter btn-light mb-1"
+        href="{% url 'profile_update' member.id %}"
+        >Settings</a
+      >
+    </p></span
+  >
+</div>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a
+      class="nav-link active"
+      id="nav-questions-tab"
+      data-bs-toggle="tab"
+      href="#nav-questions"
+      role="tab"
+      aria-controls="nav-questions"
+      aria-selected="true"
+      >{{user_questions.count}} Questions</a
+    >
+    <a
+      class="nav-link"
+      id="nav-answers-tab"
+      data-bs-toggle="tab"
+      href="#nav-answers"
+      role="tab"
+      aria-controls="nav-answers"
+      aria-selected="false"
+      >{{user_answers.count}} Answers</a
+    >
+    <a
+      class="nav-link"
+      id="nav-likes-tab"
+      data-bs-toggle="tab"
+      href="#nav-likes"
+      role="tab"
+      aria-controls="nav-likes"
+      aria-selected="false"
+      >Likes</a
+    >
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="nav-questions"
+    role="tabpanel"
+    aria-labelledby="nav-questions-tab"
+  >
+    <ul class="list-group list-group-flush border-bottom">
+      {% if user_questions %} {% for question in user_questions %}
+      <li class="list-group-item mt-2">
+        <a
+          class="btn-sm btn fw-lighter btn-light mb-1"
+          href="{% url 'questions_sort' question.category %}"
+          >#{{ question.category }}</a
         >
-          <div class="row text-center">
-            <span class="articles">Points {{ member.points }}</span>
+        <a
+          class="btn-sm btn fw-lighter btn-light mb-1"
+          href="{% url 'question_update' question.id %} "
+          >Edit</a
+        >
+        <a
+          class="btn-sm btn fw-lighter btn-light mb-1"
+          href="{% url 'question_delete' question.id %}"
+          >Delete</a
+        >
+
+        <div class="card-content mt-1 qtext fs-5">
+          <a
+            class="nounderline qtext"
+            href="{% url 'question_detail' question.id %}"
+            >{{question}}</a
+          >
+        </div>
+
+        <p class="qtext mt-2">
+          {% if question.answer_set.count == 1 %} {{ question.answer_set.count}}
+          Answer {% else%} {{ question.answer_set.count }} Answers {%endif%}
+        </p>
+
+        {% endfor %} {% else %}
+        <p class="m-5">No Questions Yet</p>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <div
+    class="tab-pane fade"
+    id="nav-answers"
+    role="tabpanel"
+    aria-labelledby="nav-answers-tab"
+  >
+    <ul class="list-group list-group-flush border-bottom">
+      {% if user_answers %} {% for answer in user_answers %}
+      <li class="list-group-item mt-2">
+        <a
+          class="nounderline"
+          href="{% url 'question_detail' answer.question.id %}"
+        >
+          <p class="qtext mt-2 mb-2 fs-5 qtext">{{answer.question}}</p>
+        </a>
+        <div
+          class="d-flex justify-content-between align-items-center video-container"
+        >
+          <div class="card-content">
+            <span class="card-title fs-5 qtext"
+              >{{ answer.answer |oembed:"500"}}</span
+            >
           </div>
         </div>
-        <div class="button mt-2 d-flex flex-row align-items-center">
-          <button class="btn btn-sm btn-outline-primary w-100">
-            <a class="nounderline" href="{% url 'profile_update' member.id %}">
-              Edit Profile
-            </a>
-          </button>
+        {% endfor %} {% else %}
+        <p class="m-5">No Answers Yet</p>
+      </li>
+
+      {% endif %}
+    </ul>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="nav-likes"
+    role="tabpanel"
+    aria-labelledby="nav-likes-tab"
+  >
+    <ul class="list-group list-group-flush border-bottom">
+      {% if like_answers %}{% for like in like_answers %}
+      <li class="list-group-item mt-2">
+        <a
+          class="nounderline"
+          href="{% url 'question_detail' like.answer.question.id %}"
+        >
+          <p class="qtext mt-2 mb-2 fs-5 qtext">{{like.answer.question}}</p>
+        </a>
+
+        <div
+          class="d-flex justify-content-between align-items-center video-container"
+        >
+          <div class="card-content">
+            <span class="card-title fs-5 qtext"
+              >{{ like.answer.answer |oembed:"500" }}</span
+            >
+          </div>
         </div>
-      </div>
-    </div>
+        {% endfor %} {% else %}
+        <p class="m-5">No Likes Yet</p>
+      </li>
+
+      {% endif %}
+    </ul>
   </div>
 </div>
-<hr />
-<div class="row">
-  <h3>{{ member.first_name }}'s Questions</h3>
-    {% if user_questions %}
-      {% for question in user_questions %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              <span>{{ question.question }}</span>
-            </span>
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <h5>No Questions Yet</h5>
-    {% endif %}
-</div>
-<hr />
-<div class="row">
-  <h3>{{ member.first_name }}'s Answers</h3>
-    {% if user_answers %}
-      {% for answer in user_answers %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              <span>{{ answer.question }}</span>
-              <span>{{ answer.answer }}</span>
-            </span>
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <h5>No Answers Yet</h5>
-    {% endif %}
-</div>
 
-  {% endblock %}
-</div>
+{% endblock %}

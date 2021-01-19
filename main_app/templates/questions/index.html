@@ -10,59 +10,58 @@
     data-bs-toggle="dropdown"
     aria-expanded="false"
   >
-    {% if category %} {{category_full_name}} {% else %} Sort by Category
-    {%endif%}
+    {% if category %} {{category}} {% else %} Sort by Category {%endif%}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li><a class="dropdown-item" href="{% url 'questions_index' %}">All</a></li>
     <li>
-      <a class="dropdown-item" href="{% url 'questions_sort' 'SCIENCE' %}"
+      <a class="dropdown-item" href="{% url 'questions_sort' 'Science' %}"
         >Science</a
       >
     </li>
     <li>
-      <a class="dropdown-item" href="{% url 'questions_sort' 'MATHEMATICS' %}"
+      <a class="dropdown-item" href="{% url 'questions_sort' 'Mathematics' %}"
         >Mathematics</a
       >
     </li>
     <li>
-      <a class="dropdown-item" href="{% url 'questions_sort' 'GARDEN' %}"
+      <a class="dropdown-item" href="{% url 'questions_sort' 'Garden' %}"
         >Garden</a
       >
     </li>
     <li>
-      <a class="dropdown-item" href="{% url 'questions_sort' 'OTHER' %}"
+      <a class="dropdown-item" href="{% url 'questions_sort' 'Other' %}"
         >Other</a
       >
     </li>
   </ul>
 </div>
 
-<div class="card mb-1">
+<div class="card">
   <div class="card-header">Questions for you</div>
 
   <ul class="list-group list-group-flush">
     {% for question in questions %}
-    <li class="list-group-item">
+    <li class="list-group-item mt-2">
       <a
         class="btn-sm btn fw-lighter btn-light"
         href="{% url 'questions_sort' question.category %}"
         >#{{ question.category }}</a
       >
-      <div class="card-content">
+      <div class="card-content mt-1">
         <a
           class="nounderline qtext"
           href="{% url 'question_detail' question.id %}"
         >
           <span class="card-title fs-5 qtext">{{ question.question }}</span></a
         >
-        <p class="qtext">
+        <p class="qtext mt-1">
           {% if question.answer_set.count == 1 %} {{ question.answer_set.count}}
           Answer {% else%} {{ question.answer_set.count }} Answers {%endif%}
         </p>
       </div>
 
-      <div class="card-content">
+      <div class="card-content mb-2 mt-1">
         <a
           class="btn btn-outline-dark btn-sm"
           data-bs-toggle="collapse"
@@ -105,13 +104,17 @@
         <div style="display: inline-block">{{ question.liked.all.count }}</div>
 
         <div
-          class="card card-body collapse mt-2"
+          class="card card-body collapse mt-2 bg-light"
           id="collapseExample-{{ question.id }}"
         >
           {% include 'main_app/answer_form.html' %}
         </div>
       </div>
     </li>
-    {% endfor %} {% endblock %}
+    {% endfor %}
   </ul>
 </div>
+
+<script type="text/javascript"></script>
+
+{% endblock %}

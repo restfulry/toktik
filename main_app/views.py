@@ -49,8 +49,8 @@ def question_detail(request, question_id):
 def questions_sort(request, category):
     print(f"{category}")
     questions = Question.objects.filter(category=category)
-    category_full_name = questions.first().get_category_display()
-    return render(request, 'questions/index.html', {'questions': questions, 'category': category, "category_full_name": category_full_name})
+    # category_full_name = questions.first().get_category_display()
+    return render(request, 'questions/index.html', {'questions': questions, 'category': category})
 
 
 def home(request):
@@ -90,9 +90,11 @@ def profile_detail(request, member_id):
     user = request.user
     user_questions = Question.objects.filter(user=user.id)
     user_answers = Answer.objects.filter(user=user.id)
+    like_questions = Like_Question.objects.filter(user=user.id)
+    like_answers = Like_Answer.objects.filter(user=user.id)
     answers = Answer.objects.all()
     return render(request, 'profile/detail.html', {
-        'member': member, 'user_questions': user_questions, 'user_answers': user_answers, 'question_form': QuestionForm
+        'member': member, 'user_questions': user_questions, 'user_answers': user_answers, 'question_form': QuestionForm, 'like_questions': like_questions, 'like_answers': like_answers
     })
 
 

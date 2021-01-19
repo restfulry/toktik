@@ -1,50 +1,26 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base_registration.html' %} {% block content %}
 
-<h1 class="text-center">Edit Profile</h1>
+<div class="pt-md-5"></div>
 
-<div class="container mt-5 d-flex justify-content-center">
-  <div class="card p-3">
-    <div class="d-flex align-items-center">
-      <div class="col-sm">
-        <div class="image image-detail">
-          {% if member.photo_set.all %}
-          <img
-            class="responsive-img card-panel image-detail"
-            src="{{ member.photo_set.last.url }}"
-            width="140"
-            height="140"
-          />
-          {% else %}
-          <img
-            src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
-            class="rounded"
-            width="155"
-          />
-          {% endif %}
-        </div>
-        <button class="btn btn-sm btn-outline-primary">
-          <a class="nounderline" href="{% url 'change_photo' member.id %}">
-            Change Photo
-          </a>
-        </button>
+<ul class="list-group list-group-flush border-bottom">
+  <li class="list-group-item mt-2 border-bottom">Account Settings</li>
+  <li class="list-group-item mt-2 border-bottom">
+    <form action="" method="post">
+      <!-- Django requires the following for security purposes -->
+      {% csrf_token %}
+      <table>
+        <!-- Render the inputs inside of <tr>s & <td>s -->
+        {{ form.as_table }}
+      </table>
+      <div class="flex-row align-content-center">
+        <input
+          type="submit"
+          value="Update"
+          class="button mt-2 d-flex flex-row align-items-center btn btn-outline-primary"
+        />
       </div>
-      <form action="" method="post">
-        <!-- Django requires the following for security purposes -->
-        {% csrf_token %}
-        <table>
-          <!-- Render the inputs inside of <tr>s & <td>s -->
-          {{ form.as_table }}
-        </table>
-        <div class="flex-row align-content-center">
-          <input
-            type="submit"
-            value="Update"
-            class="button mt-2 d-flex flex-row align-items-center btn btn-outline-primary"
-          />
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+    </form>
+  </li>
+</ul>
 
 {% endblock %}
