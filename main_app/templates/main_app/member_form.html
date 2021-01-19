@@ -2,25 +2,60 @@
 
 <div class="pt-md-5"></div>
 
-<ul class="list-group list-group-flush border-bottom">
+<ul class="list-group list-group-flush">
   <li class="list-group-item mt-2 border-bottom">Account Settings</li>
   <li class="list-group-item mt-2 border-bottom">
-    <form action="" method="post">
-      <!-- Django requires the following for security purposes -->
-      {% csrf_token %}
+
+  <div class="form-group">
+<form action="{% url 'profile_update' member.id %}" method="post">
+    {% csrf_token %}
       <table>
-        <!-- Render the inputs inside of <tr>s & <td>s -->
-        {{ form.as_table }}
+    {% for field in form %}
+    {% load widget_tweaks %}
+     <p>
+      {{ field.label_tag }}<br>
+      {{ field|add_class:"form-control" }}
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
       </table>
-      <div class="flex-row align-content-center">
-        <input
-          type="submit"
-          value="Update"
-          class="button mt-2 d-flex flex-row align-items-center btn btn-outline-primary"
-        />
-      </div>
-    </form>
-  </li>
+      <input type="submit" value="Save" class="btn btn-primary mt-2 mb-3" />
+    </div>
+  </form>
+    </div>
+    </li>
 </ul>
+
+
+{% comment %} <div class="form-group">
+  <form action="{% url 'question_update' question.id %}" method="post">
+    {% csrf_token %}
+      <table>
+    {% for field in form %}
+    {% load widget_tweaks %}
+     <p>
+      {{ field.label_tag }}<br>
+      {{ field|add_class:"form-control" }}
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+      </table>
+      <input type="submit" value="Save" class="btn btn-primary mt-2" />
+    </div>
+  </form>
+</div> {% endcomment %}
+
+
+
 
 {% endblock %}

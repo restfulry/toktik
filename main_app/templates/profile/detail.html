@@ -2,7 +2,7 @@
 
 <div class="pt-md-5"></div>
 
-<div class="d-flex align-items-center justify-content-center">
+<div class="d-flex align-items-center justify-content-center mb-3">
   <div class="image" style="display: inline-block">
     {% if member.photo_set.all %}
     <img
@@ -47,8 +47,9 @@
       role="tab"
       aria-controls="nav-questions"
       aria-selected="true"
-      >{{user_questions.count}} Questions</a
-    >
+      >{% if user_questions.count == 1 %} {{ user_questions.count}} Question
+      {%else%} {{ user_questions.count }} Questions {%endif%}
+    </a>
     <a
       class="nav-link"
       id="nav-answers-tab"
@@ -57,8 +58,10 @@
       role="tab"
       aria-controls="nav-answers"
       aria-selected="false"
-      >{{user_answers.count}} Answers</a
     >
+      {% if user_answers.count == 1 %} {{ user_answers.count}} Answer {% else%}
+      {{ user_answers.count }} Answers {%endif%}
+    </a>
     <a
       class="nav-link"
       id="nav-likes-tab"
@@ -67,8 +70,10 @@
       role="tab"
       aria-controls="nav-likes"
       aria-selected="false"
-      >Likes</a
     >
+      {% if like_answers.count == 1 %} {{ like_answers.count}} Like {%else%} {{
+      like_answers.count }} Likes {%endif%}
+    </a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
