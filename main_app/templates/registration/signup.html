@@ -1,9 +1,10 @@
 {% extends 'base_registration.html' %} {% block content %}
 
-<h1>Sign Up</h1>
-<br/>
+<div class="pt-md-5"></div>
+
+<h3 class="mb-3">Sign Up</h3>
 {% if error_message %}
-<p class="red-text">{{ error_message }}</p>
+<p class="text-danger mb-2">{{ error_message }}</p>
 {% endif %}
 
 <form method="post" action="{% url 'signup' %}">
@@ -14,10 +15,10 @@
       {{ field.label_tag }}<br>
       {{ field|add_class:"form-control" }}
       {% if field.help_text %}
-        <small style="color: grey">{{ field.help_text }}</small>
+        <small style="color: grey" >{{ field.help_text }}</small>
       {% endif %}
       {% for error in field.errors %}
-        <p style="color: red">{{ error }}</p>
+        <p class="text-danger">{{ error }}</p>
       {% endfor %}
     </p>
   {% endfor %}
@@ -27,4 +28,3 @@
 
 
 
-afsdfuU3082sjJ

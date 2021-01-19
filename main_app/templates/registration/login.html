@@ -1,7 +1,9 @@
 {% extends 'base_registration.html' %} {% block content %}
 
-<h1>Log In</h1>
-<br />
+<div class="pt-md-5"></div>
+
+<h3 class="mb-3">Log In</h3>
+
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
   <div class="form-group">
@@ -21,7 +23,9 @@
       placeholder="Password"
     />
   </div>
-  <p>Not Registered? Sign Up <a href="/accounts/signup/">Here.</a></p>
+  <p class="mb-3">
+    Not Registered? Sign Up <a href="/accounts/signup/">Here.</a>
+  </p>
   <input type="submit" class="btn btn-outline-primary" value="login" />
   <input type="hidden" name="next" value="{{next}}" />
 </form>

@@ -198,6 +198,10 @@
       });
     });
   });
+
+  $("#exampleModal").on("shown.bs.modal", function () {
+    $("#id_question").focus();
+  });
 </script>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load micawber_tags %}
 
 <div class="pt-md-5"></div>
 
@@ -24,8 +24,14 @@
     <p>
       <a
         class="btn-sm btn fw-lighter btn-light mb-1"
+        href="{% url 'change_photo' member.id %}"
+      >
+        Update Photo
+      </a>
+      <a
+        class="btn-sm btn fw-lighter btn-light mb-1"
         href="{% url 'profile_update' member.id %}"
-        >Edit Profile</a
+        >Settings</a
       >
     </p></span
   >
@@ -72,15 +78,75 @@
     role="tabpanel"
     aria-labelledby="nav-questions-tab"
   >
-    ...
+    <ul class="list-group list-group-flush border-bottom">
+      {% if user_questions %} {% for question in user_questions %}
+      <li class="list-group-item mt-2">
+        <a
+          class="btn-sm btn fw-lighter btn-light mb-1"
+          href="{% url 'questions_sort' question.category %}"
+          >#{{ question.category }}</a
+        >
+        <a
+          class="btn-sm btn fw-lighter btn-light mb-1"
+          href="{% url 'question_update' question.id %} "
+          >Edit</a
+        >
+        <a
+          class="btn-sm btn fw-lighter btn-light mb-1"
+          href="{% url 'question_delete' question.id %}"
+          >Delete</a
+        >
+
+        <div class="card-content mt-1 qtext fs-5">
+          <a
+            class="nounderline qtext"
+            href="{% url 'question_detail' question.id %}"
+            >{{question}}</a
+          >
+        </div>
+
+        <p class="qtext mt-2">
+          {% if question.answer_set.count == 1 %} {{ question.answer_set.count}}
+          Answer {% else%} {{ question.answer_set.count }} Answers {%endif%}
+        </p>
+
+        {% endfor %} {% else %}
+        <p>No Questions Yet</p>
+      </li>
+      {% endif %}
+    </ul>
   </div>
+
   <div
     class="tab-pane fade"
     id="nav-answers"
     role="tabpanel"
     aria-labelledby="nav-answers-tab"
   >
-    ...
+    <ul class="list-group list-group-flush border-bottom">
+      {% if user_answers %} {% for answer in user_answers %}
+      <li class="list-group-item mt-2">
+        <a
+          class="nounderline"
+          href="{% url 'question_detail' answer.question.id %}"
+        >
+          <p class="qtext mt-2 mb-2 fs-5 qtext">{{answer.question}}</p>
+        </a>
+        <div
+          class="d-flex justify-content-between align-items-center video-container"
+        >
+          <div class="card-content">
+            <span class="card-title fs-5 qtext"
+              >{{ answer.answer |oembed:"500"}}</span
+            >
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <p>No Answeres Yet</p>
+      </li>
+
+      {% endif %}
+    </ul>
   </div>
   <div
     class="tab-pane fade"
@@ -90,66 +156,6 @@
   >
     ...
   </div>
-</div>
-
-<div class="container mt-5 d-flex justify-content-center">
-  <div class="card p-3">
-    <div class="d-flex align-items-center">
-      <div class="ml-3 w-100">
-        <h4 class="mb-0 mt-0">
-          {{ member.first_name }} {{ member.last_name }}
-        </h4>
-        <span>Username: {{ member.user }}</span>
-        <br />
-        <span>Email: {{ member.email }}</span>
-        <div
-          class="p-2 mt-2 bg-primary d-flex justify-content-center rounded text-white stats"
-        >
-          <div class="row text-center">
-            <span class="articles">Points {{ member.points }}</span>
-          </div>
-        </div>
-        <div class="button mt-2 d-flex flex-row align-items-center">
-          <button class="btn btn-sm btn-outline-primary w-100">
-            <a class="nounderline" href="{% url 'profile_update' member.id %}">
-              Edit Profile
-            </a>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<hr />
-<div class="row">
-  <h3>{{ member.first_name }}'s Questions</h3>
-  {% if user_questions %} {% for question in user_questions %}
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">
-        <span>{{ question.question }}</span>
-      </span>
-    </div>
-  </div>
-  {% endfor %} {% else %}
-  <h5>No Questions Yet</h5>
-  {% endif %}
-</div>
-<hr />
-<div class="row">
-  <h3>{{ member.first_name }}'s Answers</h3>
-  {% if user_answers %} {% for answer in user_answers %}
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">
-        <span>{{ answer.question }}</span>
-        <span>{{ answer.answer }}</span>
-      </span>
-    </div>
-  </div>
-  {% endfor %} {% else %}
-  <h5>No Answers Yet</h5>
-  {% endif %}
 </div>
 
 {% endblock %}
