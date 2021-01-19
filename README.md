@@ -9,8 +9,6 @@ David Harris, Ryan Lee, Irfan Ahmd
 
 ## Screenshots
 
-- link to Notion doc
-
 ## Technologies Used
 
 - Django & Python
@@ -22,4 +20,13 @@ David Harris, Ryan Lee, Irfan Ahmd
 
 ## Getting Started
 
+DEPLOYED URL ALSO GOES HERE
+
+Scroll through the homepage to learn something new.
+Make an account or login to ask your burning questions, or help someone out!
+
+[Project Planning via Notion](https://www.notion.so/f0f81fcc1dd240559fe035950a491763?v=f9f0a53b585e4ca0a61e4b57bc3b57a9)
+
 ## Next Steps
+
+-
