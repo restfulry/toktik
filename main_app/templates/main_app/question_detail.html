@@ -9,6 +9,7 @@
       href="{% url 'questions_sort' question.category %}"
       >#{{ question.category }}</a
     >
+    {% if user.id == question.user.id %}
     <a
       class="btn-sm btn fw-lighter btn-light mb-1"
       href="{% url 'question_update' question.id %} "
@@ -19,7 +20,7 @@
       href="{% url 'question_delete' question.id %}"
       >Delete</a
     >
-
+    {%endif%}
     <p class="card-title fs-5 qtext">{{ question }}</p>
 
     <div class="card-content">
