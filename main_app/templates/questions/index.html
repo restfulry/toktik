@@ -12,27 +12,28 @@
     data-bs-toggle="dropdown"
     aria-expanded="false"
   >
-    All Categories
+    {% if category %} {{category_full_name}} {% else %} Sort by Category
+    {%endif%}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li><a class="dropdown-item" href="{% url 'questions_index' %}">All</a></li>
     <li>
       <a class="dropdown-item" href="{% url 'questions_sort' 'SCI' %}"
-        >Science</a
+        >SCIENCE</a
       >
     </li>
     <li>
       <a class="dropdown-item" href="{% url 'questions_sort' 'MAT' %}"
-        >Mathematics</a
+        >MATHEMATICS</a
       >
     </li>
     <li>
       <a class="dropdown-item" href="{% url 'questions_sort' 'GAR' %}"
-        >Garden</a
+        >GARDEN</a
       >
     </li>
     <li>
-      <a class="dropdown-item" href="{% url 'questions_sort' 'OTH' %}">Other</a>
+      <a class="dropdown-item" href="{% url 'questions_sort' 'OTH' %}">OTHER</a>
     </li>
   </ul>
 </div>
