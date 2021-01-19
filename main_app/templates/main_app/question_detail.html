@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load micawber_tags %}
 
 <div class="pt-md-5"></div>
 
@@ -12,6 +12,19 @@
         >#{{ question.category }}</a
       >
 
+      <div class="card-content">
+        <a
+          class="nounderline qtext"
+          href="{% url 'question_detail' question.id %}"
+        >
+          <span class="card-title fs-5 qtext"
+            >{{ answer.answer |oembed:"500"}}</span
+          ></a
+        >
+      </div>
+
+      <a href="{% url 'question_update' question.id %} ">Edit Question</a>
+      <a href="{% url 'question_delete' question.id %}">Delete Question</a>
       {% endfor %}
     </li>
   </ul>
@@ -30,6 +43,4 @@
   <input type="submit" class="btn" value="Submit" />
 </form>
 
-<a href="{% url 'question_update' question.id %} ">Edit Question</a>
-<a href="{% url 'question_delete' question.id %}">Delete Question</a>
 {% endcomment %}

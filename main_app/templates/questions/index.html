@@ -53,11 +53,9 @@
           class="nounderline qtext"
           href="{% url 'question_detail' question.id %}"
         >
-          <span class="card-title fs-5 fw-bold"
-            >{{ question.question }}</span
-          ></a
+          <span class="card-title fs-5 qtext">{{ question.question }}</span></a
         >
-        <p class="fw-bold">
+        <p class="qtext">
           {% if question.answer_set.count == 1 %} {{ question.answer_set.count}}
           Answer {% else%} {{ question.answer_set.count }} Answers {%endif%}
         </p>
@@ -105,10 +103,11 @@
 
         <div style="display: inline-block">{{ question.liked.all.count }}</div>
 
-        <div class="collapse mt-2" id="collapseExample-{{ question.id }}">
-          <div class="card card-body">
-            {% include 'main_app/answer_form.html' %}
-          </div>
+        <div
+          class="card card-body collapse mt-2"
+          id="collapseExample-{{ question.id }}"
+        >
+          {% include 'main_app/answer_form.html' %}
         </div>
       </div>
     </li>

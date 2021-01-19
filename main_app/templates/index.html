@@ -1,9 +1,9 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load micawber_tags %}
 
 <div class="pt-md-5"></div>
 
 <div class="card mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <div class="card-body">
+  <div class="card-body d-flex align-items-center">
     {% if user.member.photo_set.last.url %}
     <img
       class="responsive-img rounded-circle"
@@ -18,11 +18,11 @@
       width="45"
     />
     {% endif %}
-    <span class="ms-2 qtext">What do you want to know?</span>
+    <span class="ms-2 fs-5 fw-bold">What do you want to know?</span>
   </div>
 </div>
 
-{% load micawber_tags %} {% if answers %} {% for answer in answers %}
+{% if answers %} {% for answer in answers %}
 
 <div class="card mb-2">
   <div class="card-body">
@@ -48,13 +48,13 @@
         class="nounderline"
         href="{% url 'question_detail' answer.question.id %}"
       >
-        <p class="qtext mt-2 mb-2">{{answer.question}}</p>
+        <p class="qtext mt-2 mb-2 fs-5 qtext">{{answer.question}}</p>
       </a>
       <div
         class="d-flex justify-content-between align-items-center video-container"
       >
         <div class="d-flex justify-content-between align-items-center">
-          <div>{{ answer.answer|oembed:"500" }}</div>
+          <div>{{ answer.answer |oembed:"500" }}</div>
         </div>
       </div>
     </div>
@@ -130,10 +130,11 @@
 
       {% endif %}
 
-      <div class="collapse mt-2" id="collapseExample-{{ answer.id }}">
-        <div class="card card-body">
-          {% include 'main_app/answer_form_index.html' %}
-        </div>
+      <div
+        class="card card-body collapse mt-2 bg-light"
+        id="collapseExample-{{ answer.id }}"
+      >
+        {% include 'main_app/answer_form_index.html' %}
       </div>
     </div>
 
