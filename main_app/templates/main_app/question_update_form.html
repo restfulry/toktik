@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Update Question</h1>
+<div class="form-group">
+  <form action="{% url 'question_update' user.id %}" method="post">
+    {% csrf_token %}
+      <table>
+    {% for field in form %}
+    {% load widget_tweaks %}
+     <p>
+      {{ field.label_tag }}<br>
+      {{ field|add_class:"form-control" }}
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+      </table>
+      <input type="submit" value="Update Question" class="btn btn-primary" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}
