@@ -1,6 +1,6 @@
 # toktik
 
-Toktik is an online community where users can ask questions and get interactive video answers. By addin video responses to answers, users can show rather than just explain what they know, and help pass their knowledge along.
+Toktik is an online community where users can ask questions and get interactive video answers. By adding video responses to answers, users can show rather than just explain what they know, and help pass their knowledge along.
 
 ---
 
