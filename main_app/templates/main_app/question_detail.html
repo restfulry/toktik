@@ -1,6 +1,36 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load micawber_tags %}
 
 <div class="pt-md-5"></div>
+
+<div class="card mb-1">
+  <ul class="list-group list-group-flush">
+    {% for answer in question.answer_set.all %}
+    <li class="list-group-item">
+      <a
+        class="btn-sm btn fw-lighter btn-light"
+        href="{% url 'questions_sort' question.category %}"
+        >#{{ question.category }}</a
+      >
+
+      <div class="card-content">
+        <a
+          class="nounderline qtext"
+          href="{% url 'question_detail' question.id %}"
+        >
+          <span class="card-title fs-5 qtext"
+            >{{ answer.answer |oembed:"500"}}</span
+          ></a
+        >
+      </div>
+
+      <a href="{% url 'question_update' question.id %} ">Edit Question</a>
+      <a href="{% url 'question_delete' question.id %}">Delete Question</a>
+      {% endfor %}
+    </li>
+  </ul>
+</div>
+
+{% endblock %} {% comment %}
 
 <h1>Question Details</h1>
 <h2>{{question.question}}</h2>
@@ -8,15 +38,9 @@
 <h3>Category: {{question.category}}</h3>
 <h3>Points: {{question.points}}</h3>
 
-<div>
-  {% for answer in question.answer_set.all %} {{answer.answer}} {% endfor %}
-</div>
-
 <form action="{% url 'add_answer' question.id %}" method="post">
   {% csrf_token %} {{ answer_form.as_p }}
   <input type="submit" class="btn" value="Submit" />
 </form>
 
-<a href="{% url 'question_update' question.id %} ">Edit Question</a>
-<a href="{% url 'question_delete' question.id %}">Delete Question</a>
-{% endblock %}
+{% endcomment %}
