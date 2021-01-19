@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Delete Question</h1>
+<h2 class="mt-3">Confirm Delete</h2>
 
 <h4>
   Are you sure you want to delete
@@ -8,7 +8,9 @@
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes - Delete!" class="btn" />
-  <a href="{% url 'question_detail' question.id %}">Cancel</a>
+  <input type="submit" value="Confirm" class="btn btn-warning" />
+  <a href="{% url 'question_detail' question.id %}" class="btn btn-light"
+    >Cancel</a
+  >
 </form>
 {% endblock %}

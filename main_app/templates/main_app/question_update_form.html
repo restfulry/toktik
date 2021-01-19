@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Update Question</h1>
+<h3>Edit Question</h3>
 <div class="form-group">
   <form action="{% url 'question_update' user.id %}" method="post">
     {% csrf_token %}
@@ -19,7 +19,7 @@
     </p>
   {% endfor %}
       </table>
-      <input type="submit" value="Update Question" class="btn btn-primary" />
+      <input type="submit" value="Save" class="btn btn-primary mt-2" />
     </div>
   </form>
 </div>

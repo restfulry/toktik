@@ -2,29 +2,122 @@
 
 <div class="pt-md-5"></div>
 
-<div class="card mb-1">
+<div class="card mb-2">
+  <div class="card-body">
+    <a
+      class="btn-sm btn fw-lighter btn-light mb-1"
+      href="{% url 'questions_sort' question.category %}"
+      >#{{ question.category }}</a
+    >
+    <a
+      class="btn-sm btn fw-lighter btn-light mb-1"
+      href="{% url 'question_update' question.id %} "
+      >Edit</a
+    >
+    <a
+      class="btn-sm btn fw-lighter btn-light mb-1"
+      href="{% url 'question_delete' question.id %}"
+      >Delete</a
+    >
+
+    <p class="card-title fs-5 qtext">{{ question }}</p>
+
+    <div class="card-content">
+      <a
+        class="btn btn-outline-dark btn-sm"
+        data-bs-toggle="collapse"
+        href="#collapseExample-{{question.id}}"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample-{{question.id}}"
+        >Answer
+      </a>
+      <form
+        style="display: inline-block"
+        action="{% url 'like_question' %}"
+        method="POST"
+      >
+        {% csrf_token %}
+
+        <button
+          type="submit"
+          class="btn"
+          name="question_id"
+          value="{{ question.id }}"
+        >
+          <div class="ms-1 heart">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-suit-heart"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"
+              />
+            </svg>
+          </div>
+        </button>
+      </form>
+
+      <div style="display: inline-block">{{ question.liked.all.count }}</div>
+
+      <div
+        class="card card-body collapse mt-2 bg-light"
+        id="collapseExample-{{ question.id }}"
+      >
+        {% include 'main_app/answer_form.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <p class="qtext">
+      {% if question.answer_set.count == 1 %} {{ question.answer_set.count}}
+      Answer {% else%} {{ question.answer_set.count }} Answers {%endif%}
+    </p>
+  </div>
   <ul class="list-group list-group-flush">
     {% for answer in question.answer_set.all %}
     <li class="list-group-item">
-      <a
-        class="btn-sm btn fw-lighter btn-light"
-        href="{% url 'questions_sort' question.category %}"
-        >#{{ question.category }}</a
-      >
-
-      <div class="card-content">
-        <a
-          class="nounderline qtext"
-          href="{% url 'question_detail' question.id %}"
-        >
-          <span class="card-title fs-5 qtext"
-            >{{ answer.answer |oembed:"500"}}</span
-          ></a
-        >
+      <div class="card-content mb-1">
+        {% if answer.user.member.photo_set.all %}
+        <img
+          class="responsive-img rounded-circle"
+          src="{{ answer.user.member.photo_set.last.url }}"
+          width="45"
+          height="45"
+        />
+        {% else %}
+        <img
+          src="https://cdn0.iconfinder.com/data/icons/internet-2020/1080/tiktokgradient-512.png"
+          class="rounded-circle"
+          width="45"
+        />
+        {% endif %}
+        <span class="ms-2 qtext">
+          {{answer.user.member.first_name}} {{answer.user.member.last_name}}
+        </span>
       </div>
 
-      <a href="{% url 'question_update' question.id %} ">Edit Question</a>
-      <a href="{% url 'question_delete' question.id %}">Delete Question</a>
+      <div
+        class="d-flex justify-content-between align-items-center video-container"
+      >
+        <div class="card-content">
+          <span class="card-title fs-5 qtext"
+            >{{ answer.answer |oembed:"500"}}</span
+          >
+        </div>
+      </div>
+
+      <a
+        class="nounderline qtext"
+        href="{% url 'question_detail' question.id %}"
+      ></a>
       {% endfor %}
     </li>
   </ul>

@@ -5,10 +5,10 @@ from django.dispatch import receiver
 from django.urls import reverse
 
 CATEGORIES = (
-    ('SCIENCE', 'SCIENCE'),
-    ('MATHEMATICS', 'MATHEMATICS'),
-    ('GARDEN', 'GARDEN'),
-    ('OTHER', 'OTHER')
+    ('Science', 'Science'),
+    ('Mathematics', 'Mathematics'),
+    ('Garden', 'Garden'),
+    ('Other', 'Other')
 )
 
 LIKE_CHOICES = (

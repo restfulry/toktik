@@ -49,8 +49,8 @@ def question_detail(request, question_id):
 def questions_sort(request, category):
     print(f"{category}")
     questions = Question.objects.filter(category=category)
-    category_full_name = questions.first().get_category_display()
-    return render(request, 'questions/index.html', {'questions': questions, 'category': category, "category_full_name": category_full_name})
+    # category_full_name = questions.first().get_category_display()
+    return render(request, 'questions/index.html', {'questions': questions, 'category': category})
 
 
 def home(request):
