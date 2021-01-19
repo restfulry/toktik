@@ -6,15 +6,19 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+p {
+  margin: 2px;
+}
+
 .qtext {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .heart {
   text-align: center;
 }
 
-/* .video-container {
+.video-container {
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 30px;
@@ -30,7 +34,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-} */
+}
 
 .image-detail {
   border-radius: 50%;
@@ -40,4 +44,3 @@ body {
 .nounderline {
   text-decoration: none !important;
 }
-

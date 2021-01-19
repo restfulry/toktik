@@ -1,6 +1,5 @@
 {% block content %} {% load widget_tweaks %}
 
-
 <div class="card-content bg-light p-2">
 {% if user.member.photo_set.all %}
       <img
@@ -20,18 +19,21 @@
         {{user.member.first_name}} {{user.member.last_name}}
       </span>
 </div>
+
   <div class="form-group mt-2">
-    <form action="{% url 'add_answer' question.id %}" method="post">
-      {% csrf_token %}
+    <form action="{% url 'add_answer' answer.question.id %}" method="post">
+    {% csrf_token %}
       <p>
         {% render_field answer_form.answer class="form-control mb-2" placeholder="Paste a video url" %}
-        <span>Post as Anonymous </span>
-        {%render_field answer_form.is_anon class="form-check-input" %}
+        <span>Post as Anonymous </span>{%render_field answer_form.is_anon class="form-check-input mb-2" %}
         <div class="mt-2">
           <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
       </p>
     </form>
+
   </div>
+
+
 
 {% endblock %}

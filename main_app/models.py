@@ -5,10 +5,10 @@ from django.dispatch import receiver
 from django.urls import reverse
 
 CATEGORIES = (
-    ('SCI', 'SCIENCE'),
-    ('MAT', 'MATHEMATICS'),
-    ('GAR', 'GARDEN'),
-    ('OTH', 'OTHER')
+    ('SCIENCE', 'SCIENCE'),
+    ('MATHEMATICS', 'MATHEMATICS'),
+    ('GARDEN', 'GARDEN'),
+    ('OTHER', 'OTHER')
 )
 
 LIKE_CHOICES = (
@@ -40,7 +40,7 @@ class Member(models.Model):
 class Question(models.Model):
     question = models.CharField(max_length=500)
     category = models.CharField(
-        max_length=3,
+        max_length=24,
         choices=CATEGORIES,
     )
     is_anon = models.BooleanField(default=False)

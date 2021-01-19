@@ -16,7 +16,7 @@ class SignUpForm(UserCreationForm):
                   'email', 'password1', 'password2']
 
 
-class AnswerForm(ModelForm):
+class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['answer', 'is_anon']

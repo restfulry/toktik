@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import SignUpForm, QuestionForm
+from .forms import SignUpForm, QuestionForm, AnswerForm
 from .models import Question, Member, Answer, Photo, Like_Answer, Like_Question
 import uuid
 import boto3
-from .forms import AnswerForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
 # AWS Base URL and S3 Bucket
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
@@ -37,14 +37,13 @@ class QuestionDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def questions_index(request):
     questions = Question.objects.all()
-    return render(request, 'questions/index.html', {'questions': questions, 'question_form': QuestionForm})
+    return render(request, 'questions/index.html', {'questions': questions, 'question_form': QuestionForm, 'answer_form': AnswerForm})
 
 
 @login_required
 def question_detail(request, question_id):
     question = Question.objects.get(id=question_id)
-    answer_form = AnswerForm()
-    return render(request, 'main_app/question_detail.html', {'question': question, 'answer_form': answer_form, 'question_form': QuestionForm})
+    return render(request, 'main_app/question_detail.html', {'question': question, 'answer_form': AnswerForm, 'question_form': QuestionForm})
 
 
 def questions_sort(request, category):
@@ -57,7 +56,7 @@ def home(request):
     text = request.GET.get('text', '')
     questions = Question.objects.all()
     answers = Answer.objects.all()
-    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'question_form': QuestionForm})
+    return render(request, 'index.html', {'text': text, 'questions': questions, 'answers': answers, 'question_form': QuestionForm, 'answer_form': AnswerForm})
 
 
 def signup(request):
@@ -128,6 +127,14 @@ def like_answer(request):
                 like.value = 'Like'
 
         like.save()
+
+        data = {
+            'value': like.value,
+            'likes': answer.liked.all().count()
+        }
+
+        return JsonResponse(data, safe=False)
+
     return redirect('home')
 
 
