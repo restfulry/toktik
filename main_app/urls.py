@@ -6,7 +6,7 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('profile/<int:member_id>/', views.profile_detail, name='profile_detail'),
     path('profile/<int:pk>/update/',
-         views.ProfileUpdate.as_view(), name='profile_update'),
+         views.ProfileUpdate.as_view(template_name="main_app/member_form.html"), name='profile_update'),
     path('profile/<int:member_id>/change_photo/',
          views.change_photo, name='change_photo'),
     path('questions/create/', views.QuestionCreate.as_view(),

@@ -1,9 +1,10 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base_registration.html' %} {% block content %}
 
 <div class="pt-md-5"></div>
 
-<div class="d-flex align-items-center justify-content-center border">
-<div class="image">
+<div class="card">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="image">
         {% if member.photo_set.all %}
         <img
           class="responsive-img card-panel image-detail"
@@ -35,13 +36,6 @@
         />
       </form>
     </div>
-</div>
-
-
-<div class="container mt-5 d-flex justify-content-center">
-  <div class="card p-3">
-    <div class="d-flex align-items-center">
-      
   </div>
 </div>
 

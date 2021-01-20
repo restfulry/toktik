@@ -24,6 +24,20 @@
     <p class="card-title fs-5 qtext">{{ question }}</p>
 
     <div class="card-content">
+      {% if user.id == question.user.id %}
+
+      <a
+        class="btn btn-outline-dark btn-sm disabled"
+        data-bs-toggle="collapse"
+        href="#collapseExample-{{question.id}}"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample-{{question.id}}"
+        >Answer
+      </a>
+
+      {%else%}
+
       <a
         class="btn btn-outline-dark btn-sm"
         data-bs-toggle="collapse"
@@ -33,6 +47,7 @@
         aria-controls="collapseExample-{{question.id}}"
         >Answer
       </a>
+      {%endif%}
       <form
         style="display: inline-block"
         action="{% url 'like_question' %}"

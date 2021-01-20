@@ -62,18 +62,30 @@
     <!-- answer, like, like counter -->
 
     <div class="card-content mt-2">
+      {% if user.id == answer.question.user.id %}
+
       <a
-        class="btn btn-outline-dark btn-sm answer_btn"
+        class="btn btn-outline-dark btn-sm disabled"
         data-bs-toggle="collapse"
-        href="#collapseExample-{{answer.id}}"
+        href="#collapseExample-{{question.id}}"
         role="button"
         aria-expanded="false"
-        aria-controls="collapseExample-{{answer.id}}"
-        id="answer_button"
+        aria-controls="collapseExample-{{question.id}}"
         >Answer
       </a>
 
-      {% if user.id %}
+      {%else%}
+
+      <a
+        class="btn btn-outline-dark btn-sm"
+        data-bs-toggle="collapse"
+        href="#collapseExample-{{question.id}}"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample-{{question.id}}"
+        >Answer
+      </a>
+      {%endif%} {% if user.id %}
       <form
         style="display: inline-block"
         action="{% url 'like_answer' %}"
