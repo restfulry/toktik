@@ -67,10 +67,10 @@
       <a
         class="btn btn-outline-dark btn-sm disabled"
         data-bs-toggle="collapse"
-        href="#collapseExample-{{question.id}}"
+        href="#collapseExample-{{answer.id}}"
         role="button"
         aria-expanded="false"
-        aria-controls="collapseExample-{{question.id}}"
+        aria-controls="collapseExample-{{answer.id}}"
         >Answer
       </a>
 
@@ -79,12 +79,13 @@
       <a
         class="btn btn-outline-dark btn-sm"
         data-bs-toggle="collapse"
-        href="#collapseExample-{{question.id}}"
+        href="#collapseExample-{{answer.id}}"
         role="button"
         aria-expanded="false"
-        aria-controls="collapseExample-{{question.id}}"
+        aria-controls="collapseExample-{{answer.id}}"
         >Answer
       </a>
+
       {%endif%} {% if user.id %}
       <form
         style="display: inline-block"
