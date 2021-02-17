@@ -5,9 +5,11 @@ from .forms import SignUpForm, QuestionForm, AnswerForm
 from .models import Question, Member, Answer, Photo, Like_Answer, Like_Question
 import uuid
 import boto3
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
+
 
 # AWS Base URL and S3 Bucket
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
@@ -84,7 +86,7 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-@login_required
+@ login_required
 def profile_detail(request, member_id):
     member = Member.objects.get(id=member_id)
     user = request.user
@@ -98,7 +100,7 @@ def profile_detail(request, member_id):
     })
 
 
-@login_required
+@ login_required
 def add_answer(request, question_id):
     form = AnswerForm(request.POST)
     if form.is_valid():
