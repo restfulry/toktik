@@ -9,7 +9,7 @@ import boto3
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from asgiref.sync import sync_to_async
+
 
 # AWS Base URL and S3 Bucket
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
